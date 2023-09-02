@@ -1,0 +1,16 @@
+{
+    "name": "Zor.UtilityAI",
+    "rootNamespace": "Zor.UtilityAI",
+    "references": [
+        "GUID:e1703ee141f53e64180a32309e02ea34"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
