@@ -17,10 +17,19 @@ namespace Zor.UtilityAI.Core
 			get => m_blackboard;
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		protected virtual void OnInitialize() {}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		protected virtual void OnBegin() {}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		protected virtual void OnTick() {}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		protected virtual void OnEnd() {}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		protected virtual void OnDispose() {}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
