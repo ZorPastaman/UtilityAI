@@ -5,15 +5,24 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
-	public abstract class SetStructValueAction<T> : Action where T : struct
+	public abstract class SetStructValueAction<T> : Action,
+		ISetupable<T, BlackboardPropertyName>,
+		ISetupable<T, string>
+		where T : struct
 	{
-		private readonly T m_value;
-		private readonly BlackboardPropertyName m_propertyName;
+		private T m_value;
+		private BlackboardPropertyName m_propertyName;
 
-		protected SetStructValueAction(T value, BlackboardPropertyName propertyName)
+		void ISetupable<T, BlackboardPropertyName>.Setup(T value, BlackboardPropertyName propertyName)
 		{
 			m_value = value;
 			m_propertyName = propertyName;
+		}
+
+		void ISetupable<T, string>.Setup(T value, string propertyName)
+		{
+			m_value = value;
+			m_propertyName = new BlackboardPropertyName(propertyName);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -39,5 +39,82 @@ namespace Zor.UtilityAI.Core
 		{
 			m_blackboard = blackboardToSet;
 		}
+
+		[NotNull]
+		public static TConsideration Create<TConsideration>() where TConsideration : Consideration, INotSetupable, new()
+		{
+			return new TConsideration();
+		}
+
+		[NotNull]
+		public static TConsideration Create<TConsideration, TArg>(TArg arg) where TConsideration : Consideration, ISetupable<TArg>, new()
+		{
+			var consideration = new TConsideration();
+			consideration.Setup(arg);
+			return consideration;
+		}
+
+		[NotNull]
+		public static TConsideration Create<TConsideration, TArg0, TArg1>(TArg0 arg0, TArg1 arg1)
+			where TConsideration : Consideration, ISetupable<TArg0, TArg1>, new()
+		{
+			var consideration = new TConsideration();
+			consideration.Setup(arg0, arg1);
+			return consideration;
+		}
+
+		[NotNull]
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2>(TArg0 arg0, TArg1 arg1, TArg2 arg2)
+			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2>, new()
+		{
+			var consideration = new TConsideration();
+			consideration.Setup(arg0, arg1, arg2);
+			return consideration;
+		}
+
+		[NotNull]
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3>, new()
+		{
+			var consideration = new TConsideration();
+			consideration.Setup(arg0, arg1, arg2, arg3);
+			return consideration;
+		}
+
+		[NotNull]
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
+			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4>, new()
+		{
+			var consideration = new TConsideration();
+			consideration.Setup(arg0, arg1, arg2, arg3, arg4);
+			return consideration;
+		}
+
+		[NotNull]
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
+			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>, new()
+		{
+			var consideration = new TConsideration();
+			consideration.Setup(arg0, arg1, arg2, arg3, arg4, arg5);
+			return consideration;
+		}
+
+		[NotNull]
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
+			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>, new()
+		{
+			var consideration = new TConsideration();
+			consideration.Setup(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+			return consideration;
+		}
+
+		[NotNull]
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
+			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>, new()
+		{
+			var consideration = new TConsideration();
+			consideration.Setup(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+			return consideration;
+		}
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace Zor.UtilityAI.Core.Actions
 {
-	public sealed class DoNothingAction : Action
+	public sealed class DoNothingAction : Action, INotSetupable
 	{
 	}
 }

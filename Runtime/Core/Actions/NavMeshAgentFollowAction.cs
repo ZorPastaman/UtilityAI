@@ -6,19 +6,27 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
-	public sealed class NavMeshAgentFollowAction : Action
+	public sealed class NavMeshAgentFollowAction : Action,
+		ISetupable<BlackboardPropertyName, BlackboardPropertyName>,
+		ISetupable<string, string>
 	{
-		private readonly BlackboardPropertyName m_agentPropertyName;
-		private readonly BlackboardPropertyName m_targetPropertyName;
+		private BlackboardPropertyName m_agentPropertyName;
+		private BlackboardPropertyName m_targetPropertyName;
 
 		private NavMeshAgent m_agent;
 		private Transform m_target;
 
-		public NavMeshAgentFollowAction(BlackboardPropertyName agentPropertyName,
+		void ISetupable<BlackboardPropertyName, BlackboardPropertyName>.Setup(BlackboardPropertyName agentPropertyName,
 			BlackboardPropertyName targetPropertyName)
 		{
 			m_agentPropertyName = agentPropertyName;
 			m_targetPropertyName = targetPropertyName;
+		}
+
+		void ISetupable<string, string>.Setup(string agentPropertyName, string targetPropertyName)
+		{
+			m_agentPropertyName = new BlackboardPropertyName(agentPropertyName);
+			m_targetPropertyName = new BlackboardPropertyName(targetPropertyName);
 		}
 
 		protected override void OnBegin()

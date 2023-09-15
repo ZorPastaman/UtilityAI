@@ -6,14 +6,35 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
-	public sealed class CalculateNavMeshPathAction : Action
+	public sealed class CalculateNavMeshPathAction : Action,
+		ISetupable<BlackboardPropertyName, BlackboardPropertyName, BlackboardPropertyName, BlackboardPropertyName>,
+		ISetupable<string, string, string, string>
 	{
-		private readonly BlackboardPropertyName m_sourcePropertyName;
-		private readonly BlackboardPropertyName m_targetPropertyName;
-		private readonly BlackboardPropertyName m_filterPropertyName;
-		private readonly BlackboardPropertyName m_pathPropertyName;
+		private BlackboardPropertyName m_sourcePropertyName;
+		private BlackboardPropertyName m_targetPropertyName;
+		private BlackboardPropertyName m_filterPropertyName;
+		private BlackboardPropertyName m_pathPropertyName;
 
 		private readonly NavMeshPath m_path = new();
+
+		void ISetupable<BlackboardPropertyName, BlackboardPropertyName, BlackboardPropertyName, BlackboardPropertyName>.Setup(
+			BlackboardPropertyName sourcePropertyName, BlackboardPropertyName targetPropertyName,
+			BlackboardPropertyName filterPropertyName, BlackboardPropertyName pathPropertyName)
+		{
+			m_sourcePropertyName = sourcePropertyName;
+			m_targetPropertyName = targetPropertyName;
+			m_filterPropertyName = filterPropertyName;
+			m_pathPropertyName = pathPropertyName;
+		}
+
+		void ISetupable<string, string, string, string>.Setup(
+			string sourcePropertyName, string targetPropertyName, string filterPropertyName, string pathPropertyName)
+		{
+			m_sourcePropertyName = new BlackboardPropertyName(sourcePropertyName);
+			m_targetPropertyName = new BlackboardPropertyName(targetPropertyName);
+			m_filterPropertyName = new BlackboardPropertyName(filterPropertyName);
+			m_pathPropertyName = new BlackboardPropertyName(pathPropertyName);
+		}
 
 		public CalculateNavMeshPathAction(BlackboardPropertyName sourcePropertyName,
 			BlackboardPropertyName targetPropertyName, BlackboardPropertyName filterPropertyName,

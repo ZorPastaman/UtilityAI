@@ -1,6 +1,5 @@
 ﻿// Copyright (c) 2023 Vladimir Popov zor1994@gmail.com https://github.com/ZorPastaman/UtilityAI
 
-using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -8,22 +7,34 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Considerations
 {
-	public sealed class QuadraticConsideration : Consideration, IEquatable<QuadraticConsideration>
+	public sealed class QuadraticConsideration : Consideration,
+		ISetupable<float, float, float, float, BlackboardPropertyName>,
+		ISetupable<float, float, float, float, string>
 	{
-		private readonly float m_slope;
-		private readonly float m_exponent;
-		private readonly float m_verticalShift;
-		private readonly float m_horizontalShift;
-		private readonly BlackboardPropertyName m_valuePropertyName;
+		private float m_slope;
+		private float m_exponent;
+		private float m_verticalShift;
+		private float m_horizontalShift;
+		private BlackboardPropertyName m_valuePropertyName;
 
-		public QuadraticConsideration(float slope, float exponent, float verticalShift, float horizontalShift,
-			BlackboardPropertyName valuePropertyName)
+		void ISetupable<float, float, float, float, BlackboardPropertyName>.Setup(float slope, float exponent,
+			float verticalShift, float horizontalShift, BlackboardPropertyName valuePropertyName)
 		{
 			m_slope = slope;
 			m_exponent = exponent;
 			m_verticalShift = verticalShift;
 			m_horizontalShift = horizontalShift;
 			m_valuePropertyName = valuePropertyName;
+		}
+
+		void ISetupable<float, float, float, float, string>.Setup(float slope, float exponent, float verticalShift,
+			float horizontalShift, string valuePropertyName)
+		{
+			m_slope = slope;
+			m_exponent = exponent;
+			m_verticalShift = verticalShift;
+			m_horizontalShift = horizontalShift;
+			m_valuePropertyName = new BlackboardPropertyName(valuePropertyName);
 		}
 
 		public float slope
@@ -62,48 +73,6 @@ namespace Zor.UtilityAI.Core.Considerations
 			return blackboard.TryGetStructValue(m_valuePropertyName, out float value)
 				? m_slope * Mathf.Pow(value - m_verticalShift, m_exponent) + m_horizontalShift
 				: 0f;
-		}
-
-		[Pure]
-		public bool Equals(QuadraticConsideration other)
-		{
-			if (ReferenceEquals(null, other))
-			{
-				return false;
-			}
-
-			if (ReferenceEquals(this, other))
-			{
-				return true;
-			}
-
-			return m_slope.Equals(other.m_slope) && m_exponent.Equals(other.m_exponent) &&
-				m_verticalShift.Equals(other.m_verticalShift) && m_horizontalShift.Equals(other.m_horizontalShift) &&
-				m_valuePropertyName.Equals(other.m_valuePropertyName);
-		}
-
-		[Pure]
-		public override bool Equals(object obj)
-		{
-			return ReferenceEquals(this, obj) || obj is QuadraticConsideration other && Equals(other);
-		}
-
-		[Pure]
-		public override int GetHashCode()
-		{
-			return HashCode.Combine(m_slope, m_exponent, m_verticalShift, m_horizontalShift, m_valuePropertyName);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]
-		public static bool operator ==(QuadraticConsideration left, QuadraticConsideration right)
-		{
-			return Equals(left, right);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]
-		public static bool operator !=(QuadraticConsideration left, QuadraticConsideration right)
-		{
-			return !Equals(left, right);
 		}
 	}
 }

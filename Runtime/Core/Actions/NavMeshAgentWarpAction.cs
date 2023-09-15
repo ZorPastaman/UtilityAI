@@ -6,16 +6,24 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
-	public sealed class NavMeshAgentWarpAction : Action
+	public sealed class NavMeshAgentWarpAction : Action,
+		ISetupable<BlackboardPropertyName, BlackboardPropertyName>,
+		ISetupable<string, string>
 	{
-		private readonly BlackboardPropertyName m_agentPropertyName;
-		private readonly BlackboardPropertyName m_destinationPropertyName;
+		private BlackboardPropertyName m_agentPropertyName;
+		private BlackboardPropertyName m_destinationPropertyName;
 
-		public NavMeshAgentWarpAction(BlackboardPropertyName agentPropertyName,
+		void ISetupable<BlackboardPropertyName, BlackboardPropertyName>.Setup(BlackboardPropertyName agentPropertyName,
 			BlackboardPropertyName destinationPropertyName)
 		{
 			m_agentPropertyName = agentPropertyName;
 			m_destinationPropertyName = destinationPropertyName;
+		}
+
+		void ISetupable<string, string>.Setup(string agentPropertyName, string destinationPropertyName)
+		{
+			m_agentPropertyName = new BlackboardPropertyName(agentPropertyName);
+			m_destinationPropertyName = new BlackboardPropertyName(destinationPropertyName);
 		}
 
 		protected override void OnBegin()

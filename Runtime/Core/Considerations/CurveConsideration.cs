@@ -1,6 +1,5 @@
 ﻿// Copyright (c) 2023 Vladimir Popov zor1994@gmail.com https://github.com/ZorPastaman/UtilityAI
 
-using System;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -8,10 +7,24 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Considerations
 {
-	public sealed class CurveConsideration : Consideration, IEquatable<CurveConsideration>
+	public sealed class CurveConsideration : Consideration,
+		ISetupable<AnimationCurve, BlackboardPropertyName>,
+		ISetupable<AnimationCurve, string>
 	{
-		[NotNull] private readonly AnimationCurve m_curve;
-		private readonly BlackboardPropertyName m_valuePropertyName;
+		private AnimationCurve m_curve;
+		private BlackboardPropertyName m_valuePropertyName;
+
+		void ISetupable<AnimationCurve, BlackboardPropertyName>.Setup(AnimationCurve curve, BlackboardPropertyName valuePropertyName)
+		{
+			m_curve = curve;
+			m_valuePropertyName = valuePropertyName;
+		}
+
+		void ISetupable<AnimationCurve, string>.Setup(AnimationCurve curve, string valuePropertyName)
+		{
+			m_curve = curve;
+			m_valuePropertyName = new BlackboardPropertyName(valuePropertyName);
+		}
 
 		public CurveConsideration([NotNull] AnimationCurve curve, BlackboardPropertyName valuePropertyName)
 		{
@@ -36,46 +49,6 @@ namespace Zor.UtilityAI.Core.Considerations
 		public override float ComputeUtility()
 		{
 			return blackboard.TryGetStructValue(m_valuePropertyName, out float value) ? m_curve.Evaluate(value) : 0f;
-		}
-
-		[Pure]
-		public bool Equals(CurveConsideration other)
-		{
-			if (ReferenceEquals(null, other))
-			{
-				return false;
-			}
-
-			if (ReferenceEquals(this, other))
-			{
-				return true;
-			}
-
-			return m_curve.Equals(other.m_curve) && m_valuePropertyName.Equals(other.m_valuePropertyName);
-		}
-
-		[Pure]
-		public override bool Equals(object obj)
-		{
-			return ReferenceEquals(this, obj) || obj is CurveConsideration other && Equals(other);
-		}
-
-		[Pure]
-		public override int GetHashCode()
-		{
-			return HashCode.Combine(m_curve, m_valuePropertyName);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]
-		public static bool operator ==(CurveConsideration left, CurveConsideration right)
-		{
-			return Equals(left, right);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]
-		public static bool operator !=(CurveConsideration left, CurveConsideration right)
-		{
-			return !Equals(left, right);
 		}
 	}
 }

@@ -5,11 +5,29 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
-	public sealed class InstantiateObjectAction : Action
+	public sealed class InstantiateObjectAction : Action,
+		ISetupable<BlackboardPropertyName, BlackboardPropertyName, BlackboardPropertyName>,
+		ISetupable<string, string, string>
 	{
-		private readonly BlackboardPropertyName m_prefabPropertyName;
-		private readonly BlackboardPropertyName m_positionPropertyName;
-		private readonly BlackboardPropertyName m_rotationPropertyName;
+		private BlackboardPropertyName m_prefabPropertyName;
+		private BlackboardPropertyName m_positionPropertyName;
+		private BlackboardPropertyName m_rotationPropertyName;
+
+		void ISetupable<BlackboardPropertyName, BlackboardPropertyName, BlackboardPropertyName>.Setup(
+			BlackboardPropertyName prefabPropertyName, BlackboardPropertyName positionPropertyName,
+			BlackboardPropertyName rotationPropertyName)
+		{
+			m_prefabPropertyName = prefabPropertyName;
+			m_positionPropertyName = positionPropertyName;
+			m_rotationPropertyName = rotationPropertyName;
+		}
+
+		void ISetupable<string, string, string>.Setup(string prefabPropertyName, string positionPropertyName, string rotationPropertyName)
+		{
+			m_prefabPropertyName = new BlackboardPropertyName(prefabPropertyName);
+			m_positionPropertyName = new BlackboardPropertyName(positionPropertyName);
+			m_rotationPropertyName = new BlackboardPropertyName(rotationPropertyName);
+		}
 
 		protected override void OnTick()
 		{

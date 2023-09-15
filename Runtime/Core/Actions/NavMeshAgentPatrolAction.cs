@@ -8,21 +8,29 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
-	public sealed class NavMeshAgentPatrolAction : Action
+	public sealed class NavMeshAgentPatrolAction : Action,
+		ISetupable<BlackboardPropertyName, BlackboardPropertyName>,
+		ISetupable<string, string>
 	{
-		private readonly BlackboardPropertyName m_agentPropertyName;
-		private readonly BlackboardPropertyName m_cornersPropertyName;
+		private BlackboardPropertyName m_agentPropertyName;
+		private BlackboardPropertyName m_cornersPropertyName;
 
 		private NavMeshAgent m_agent;
 		private Vector3[] m_corners;
 
 		private int m_currentCornerIndex;
 
-		public NavMeshAgentPatrolAction(BlackboardPropertyName agentPropertyName,
+		void ISetupable<BlackboardPropertyName, BlackboardPropertyName>.Setup(BlackboardPropertyName agentPropertyName,
 			BlackboardPropertyName cornersPropertyName)
 		{
 			m_agentPropertyName = agentPropertyName;
 			m_cornersPropertyName = cornersPropertyName;
+		}
+
+		void ISetupable<string, string>.Setup(string agentPropertyName, string cornersPropertyName)
+		{
+			m_agentPropertyName = new BlackboardPropertyName(agentPropertyName);
+			m_cornersPropertyName = new BlackboardPropertyName(cornersPropertyName);
 		}
 
 		protected override void OnBegin()
