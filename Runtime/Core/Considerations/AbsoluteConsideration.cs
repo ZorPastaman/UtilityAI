@@ -34,15 +34,6 @@ namespace Zor.UtilityAI.Core.Considerations
 			m_valuePropertyName = new BlackboardPropertyName(valuePropertyName);
 		}
 
-		public AbsoluteConsideration(float slope, float verticalShift, float horizontalShift,
-			BlackboardPropertyName valuePropertyName)
-		{
-			m_slope = slope;
-			m_verticalShift = verticalShift;
-			m_horizontalShift = horizontalShift;
-			m_valuePropertyName = valuePropertyName;
-		}
-
 		public float slope
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]

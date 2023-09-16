@@ -26,12 +26,6 @@ namespace Zor.UtilityAI.Core.Considerations
 			m_valuePropertyName = new BlackboardPropertyName(valuePropertyName);
 		}
 
-		public CurveConsideration([NotNull] AnimationCurve curve, BlackboardPropertyName valuePropertyName)
-		{
-			m_curve = curve;
-			m_valuePropertyName = valuePropertyName;
-		}
-
 		[NotNull]
 		public AnimationCurve curve
 		{

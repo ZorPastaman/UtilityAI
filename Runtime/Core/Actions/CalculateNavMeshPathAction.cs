@@ -36,16 +36,6 @@ namespace Zor.UtilityAI.Core.Actions
 			m_pathPropertyName = new BlackboardPropertyName(pathPropertyName);
 		}
 
-		public CalculateNavMeshPathAction(BlackboardPropertyName sourcePropertyName,
-			BlackboardPropertyName targetPropertyName, BlackboardPropertyName filterPropertyName,
-			BlackboardPropertyName pathPropertyName)
-		{
-			m_sourcePropertyName = sourcePropertyName;
-			m_targetPropertyName = targetPropertyName;
-			m_filterPropertyName = filterPropertyName;
-			m_pathPropertyName = pathPropertyName;
-		}
-
 		protected override void OnBegin()
 		{
 			base.OnBegin();
