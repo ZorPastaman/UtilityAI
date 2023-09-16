@@ -2,10 +2,10 @@
 
 using UnityEngine;
 
-namespace Zor.UtilityAI.Components.UtilityAiAgentTickers
+namespace Zor.UtilityAI.Components.UtilityAIAgentTickers
 {
 	[AddComponentMenu("Utility AI/Tickers/Update Utility AI Agent Ticker")]
-	public sealed class UpdateUtilityAiTicker : UtilityAiTicker
+	public sealed class UpdateUtilityAITicker : UtilityAITicker
 	{
 		private void Update()
 		{

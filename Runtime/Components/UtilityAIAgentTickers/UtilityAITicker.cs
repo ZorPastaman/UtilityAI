@@ -2,16 +2,16 @@
 
 using UnityEngine;
 
-namespace Zor.UtilityAI.Components.UtilityAiAgentTickers
+namespace Zor.UtilityAI.Components.UtilityAIAgentTickers
 {
-	public abstract class UtilityAiTicker : MonoBehaviour
+	public abstract class UtilityAITicker : MonoBehaviour
 	{
 		[SerializeField, Tooltip("Ticked utility AI agent.")]
-		private UtilityAiAgent m_UtilityAiAgent;
+		private UtilityAIAgent m_UtilityAIAgent;
 
 		protected void Tick()
 		{
-			m_UtilityAiAgent.Tick();
+			m_UtilityAIAgent.Tick();
 		}
 	}
 }

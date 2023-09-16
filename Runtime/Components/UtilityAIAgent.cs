@@ -8,7 +8,7 @@ using Zor.UtilityAI.Core;
 namespace Zor.UtilityAI.Components
 {
 	[AddComponentMenu("Utility AI/Utility AI Agent")]
-	public sealed class UtilityAiAgent : MonoBehaviour
+	public sealed class UtilityAIAgent : MonoBehaviour
 	{
 		[SerializeField, Tooltip("Blackboard container. It's used as a blackboard for the behavior tree.")]
 		private SimpleBlackboardContainer m_BlackboardContainer;
