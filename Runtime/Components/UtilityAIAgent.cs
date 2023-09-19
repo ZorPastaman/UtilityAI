@@ -4,12 +4,15 @@ using UnityEngine;
 using Zor.SimpleBlackboard.Components;
 using Zor.UtilityAI.Builder;
 using Zor.UtilityAI.Core;
+using Zor.UtilityAI.Serialization;
 
 namespace Zor.UtilityAI.Components
 {
 	[AddComponentMenu("Utility AI/Utility AI Agent")]
 	public sealed class UtilityAIAgent : MonoBehaviour
 	{
+		[SerializeField, Tooltip("Serialized brain. It's automatically deserialized on Awake.")]
+		private SerializedBrain_Base m_SerializedBrain;
 		[SerializeField, Tooltip("Blackboard container. It's used as a blackboard for the behavior tree.")]
 		private SimpleBlackboardContainer m_BlackboardContainer;
 
@@ -22,8 +25,7 @@ namespace Zor.UtilityAI.Components
 
 		private void Awake()
 		{
-			var builder = new BrainBuilder();
-			m_brain = builder.Build(m_BlackboardContainer.blackboard);
+			m_brain = m_SerializedBrain.CreateBrain(m_BlackboardContainer.blackboard);
 			m_brain.Initialize();
 		}
 

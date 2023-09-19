@@ -86,9 +86,11 @@ namespace Zor.UtilityAI.Builder
 
 			for (int i = 0, count = considerationsLookup.Count; i < count; ++i)
 			{
-				if (m_considerationBuilders[considerationsLookup[i]] is ConsiderationBuilder<TConsideration>)
+				int considerationIndex = considerationsLookup[i];
+
+				if (m_considerationBuilders[considerationIndex] is ConsiderationBuilder<TConsideration>)
 				{
-					sameIndex = i;
+					sameIndex = considerationIndex;
 					break;
 				}
 			}
@@ -114,10 +116,12 @@ namespace Zor.UtilityAI.Builder
 
 			for (int i = 0, count = considerationsLookup.Count; i < count; ++i)
 			{
-				if (m_considerationBuilders[considerationsLookup[i]] is ConsiderationBuilder<TConsideration, TArg> considerationBuilder &&
+				int considerationIndex = considerationsLookup[i];
+
+				if (m_considerationBuilders[considerationIndex] is ConsiderationBuilder<TConsideration, TArg> considerationBuilder &&
 					EqualityComparer<TArg>.Default.Equals(considerationBuilder.arg, arg))
 				{
-					sameIndex = i;
+					sameIndex = considerationIndex;
 					break;
 				}
 			}
@@ -143,11 +147,13 @@ namespace Zor.UtilityAI.Builder
 
 			for (int i = 0, count = considerationsLookup.Count; i < count; ++i)
 			{
-				if (m_considerationBuilders[considerationsLookup[i]] is ConsiderationBuilder<TConsideration, TArg0, TArg1> considerationBuilder &&
+				int considerationIndex = considerationsLookup[i];
+
+				if (m_considerationBuilders[considerationIndex] is ConsiderationBuilder<TConsideration, TArg0, TArg1> considerationBuilder &&
 					EqualityComparer<TArg0>.Default.Equals(considerationBuilder.arg0, arg0) &&
 					EqualityComparer<TArg1>.Default.Equals(considerationBuilder.arg1, arg1))
 				{
-					sameIndex = i;
+					sameIndex = considerationIndex;
 					break;
 				}
 			}
@@ -173,12 +179,14 @@ namespace Zor.UtilityAI.Builder
 
 			for (int i = 0, count = considerationsLookup.Count; i < count; ++i)
 			{
-				if (m_considerationBuilders[considerationsLookup[i]] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2> considerationBuilder &&
+				int considerationIndex = considerationsLookup[i];
+
+				if (m_considerationBuilders[considerationIndex] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2> considerationBuilder &&
 					EqualityComparer<TArg0>.Default.Equals(considerationBuilder.arg0, arg0) &&
 					EqualityComparer<TArg1>.Default.Equals(considerationBuilder.arg1, arg1) &&
 					EqualityComparer<TArg2>.Default.Equals(considerationBuilder.arg2, arg2))
 				{
-					sameIndex = i;
+					sameIndex = considerationIndex;
 					break;
 				}
 			}
@@ -204,13 +212,15 @@ namespace Zor.UtilityAI.Builder
 
 			for (int i = 0, count = considerationsLookup.Count; i < count; ++i)
 			{
-				if (m_considerationBuilders[considerationsLookup[i]] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3> considerationBuilder &&
+				int considerationIndex = considerationsLookup[i];
+
+				if (m_considerationBuilders[considerationIndex] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3> considerationBuilder &&
 					EqualityComparer<TArg0>.Default.Equals(considerationBuilder.arg0, arg0) &&
 					EqualityComparer<TArg1>.Default.Equals(considerationBuilder.arg1, arg1) &&
 					EqualityComparer<TArg2>.Default.Equals(considerationBuilder.arg2, arg2) &&
 					EqualityComparer<TArg3>.Default.Equals(considerationBuilder.arg3, arg3))
 				{
-					sameIndex = i;
+					sameIndex = considerationIndex;
 					break;
 				}
 			}
@@ -236,14 +246,16 @@ namespace Zor.UtilityAI.Builder
 
 			for (int i = 0, count = considerationsLookup.Count; i < count; ++i)
 			{
-				if (m_considerationBuilders[considerationsLookup[i]] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4> considerationBuilder &&
+				int considerationIndex = considerationsLookup[i];
+
+				if (m_considerationBuilders[considerationIndex] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4> considerationBuilder &&
 					EqualityComparer<TArg0>.Default.Equals(considerationBuilder.arg0, arg0) &&
 					EqualityComparer<TArg1>.Default.Equals(considerationBuilder.arg1, arg1) &&
 					EqualityComparer<TArg2>.Default.Equals(considerationBuilder.arg2, arg2) &&
 					EqualityComparer<TArg3>.Default.Equals(considerationBuilder.arg3, arg3) &&
 					EqualityComparer<TArg4>.Default.Equals(considerationBuilder.arg4, arg4))
 				{
-					sameIndex = i;
+					sameIndex = considerationIndex;
 					break;
 				}
 			}
@@ -269,7 +281,9 @@ namespace Zor.UtilityAI.Builder
 
 			for (int i = 0, count = considerationsLookup.Count; i < count; ++i)
 			{
-				if (m_considerationBuilders[considerationsLookup[i]] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5> considerationBuilder &&
+				int considerationIndex = considerationsLookup[i];
+
+				if (m_considerationBuilders[considerationIndex] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5> considerationBuilder &&
 					EqualityComparer<TArg0>.Default.Equals(considerationBuilder.arg0, arg0) &&
 					EqualityComparer<TArg1>.Default.Equals(considerationBuilder.arg1, arg1) &&
 					EqualityComparer<TArg2>.Default.Equals(considerationBuilder.arg2, arg2) &&
@@ -277,7 +291,7 @@ namespace Zor.UtilityAI.Builder
 					EqualityComparer<TArg4>.Default.Equals(considerationBuilder.arg4, arg4) &&
 					EqualityComparer<TArg5>.Default.Equals(considerationBuilder.arg5, arg5))
 				{
-					sameIndex = i;
+					sameIndex = considerationIndex;
 					break;
 				}
 			}
@@ -303,7 +317,9 @@ namespace Zor.UtilityAI.Builder
 
 			for (int i = 0, count = considerationsLookup.Count; i < count; ++i)
 			{
-				if (m_considerationBuilders[considerationsLookup[i]] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> considerationBuilder &&
+				int considerationIndex = considerationsLookup[i];
+
+				if (m_considerationBuilders[considerationIndex] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> considerationBuilder &&
 					EqualityComparer<TArg0>.Default.Equals(considerationBuilder.arg0, arg0) &&
 					EqualityComparer<TArg1>.Default.Equals(considerationBuilder.arg1, arg1) &&
 					EqualityComparer<TArg2>.Default.Equals(considerationBuilder.arg2, arg2) &&
@@ -312,7 +328,7 @@ namespace Zor.UtilityAI.Builder
 					EqualityComparer<TArg5>.Default.Equals(considerationBuilder.arg5, arg5) &&
 					EqualityComparer<TArg6>.Default.Equals(considerationBuilder.arg6, arg6))
 				{
-					sameIndex = i;
+					sameIndex = considerationIndex;
 					break;
 				}
 			}
@@ -338,7 +354,9 @@ namespace Zor.UtilityAI.Builder
 
 			for (int i = 0, count = considerationsLookup.Count; i < count; ++i)
 			{
-				if (m_considerationBuilders[considerationsLookup[i]] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> considerationBuilder &&
+				int considerationIndex = considerationsLookup[i];
+
+				if (m_considerationBuilders[considerationIndex] is ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> considerationBuilder &&
 					EqualityComparer<TArg0>.Default.Equals(considerationBuilder.arg0, arg0) &&
 					EqualityComparer<TArg1>.Default.Equals(considerationBuilder.arg1, arg1) &&
 					EqualityComparer<TArg2>.Default.Equals(considerationBuilder.arg2, arg2) &&
@@ -348,7 +366,7 @@ namespace Zor.UtilityAI.Builder
 					EqualityComparer<TArg6>.Default.Equals(considerationBuilder.arg6, arg6) &&
 					EqualityComparer<TArg7>.Default.Equals(considerationBuilder.arg7, arg7))
 				{
-					sameIndex = i;
+					sameIndex = considerationIndex;
 					break;
 				}
 			}

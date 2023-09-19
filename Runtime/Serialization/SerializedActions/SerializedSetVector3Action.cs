@@ -2,9 +2,11 @@
 
 using UnityEngine;
 using Zor.UtilityAI.Core.Actions;
+using Zor.UtilityAI.DrawingAttributes;
 
 namespace Zor.UtilityAI.Serialization.SerializedActions
 {
+	[NameOverride("Vector", 0), NameOverride("Property Name", 1)]
 	public sealed class SerializedSetVector3Action : SerializedAction<SetVector3Action, Vector3, string>
 	{
 	}
