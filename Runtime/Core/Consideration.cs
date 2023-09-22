@@ -47,7 +47,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TConsideration Create<TConsideration, TArg>(TArg arg) where TConsideration : Consideration, ISetupable<TArg>, new()
+		public static TConsideration Create<TConsideration, TArg>([CanBeNull] TArg arg) where TConsideration : Consideration, ISetupable<TArg>, new()
 		{
 			var consideration = new TConsideration();
 			consideration.Setup(arg);
@@ -55,7 +55,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TConsideration Create<TConsideration, TArg0, TArg1>(TArg0 arg0, TArg1 arg1)
+		public static TConsideration Create<TConsideration, TArg0, TArg1>([CanBeNull] TArg0 arg0,[CanBeNull]  TArg1 arg1)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1>, new()
 		{
 			var consideration = new TConsideration();
@@ -64,7 +64,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2>(TArg0 arg0, TArg1 arg1, TArg2 arg2)
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2>, new()
 		{
 			var consideration = new TConsideration();
@@ -73,7 +73,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3>, new()
 		{
 			var consideration = new TConsideration();
@@ -82,7 +82,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4>, new()
 		{
 			var consideration = new TConsideration();
@@ -91,7 +91,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>, new()
 		{
 			var consideration = new TConsideration();
@@ -100,7 +100,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>, new()
 		{
 			var consideration = new TConsideration();
@@ -109,7 +109,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
+		public static TConsideration Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6, [CanBeNull] TArg7 arg7)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>, new()
 		{
 			var consideration = new TConsideration();

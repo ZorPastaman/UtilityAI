@@ -68,14 +68,14 @@ namespace Zor.UtilityAI.Core
 			m_blackboard = blackboardToSet;
 		}
 
-				[NotNull]
+		[NotNull]
 		public static TAction Create<TAction>() where TAction : Action, INotSetupable, new()
 		{
 			return new TAction();
 		}
 
 		[NotNull]
-		public static TAction Create<TAction, TArg>(TArg arg) where TAction : Action, ISetupable<TArg>, new()
+		public static TAction Create<TAction, TArg>([CanBeNull] TArg arg) where TAction : Action, ISetupable<TArg>, new()
 		{
 			var action = new TAction();
 			action.Setup(arg);
@@ -83,7 +83,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TAction Create<TAction, TArg0, TArg1>(TArg0 arg0, TArg1 arg1)
+		public static TAction Create<TAction, TArg0, TArg1>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1)
 			where TAction : Action, ISetupable<TArg0, TArg1>, new()
 		{
 			var action = new TAction();
@@ -92,7 +92,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TAction Create<TAction, TArg0, TArg1, TArg2>(TArg0 arg0, TArg1 arg1, TArg2 arg2)
+		public static TAction Create<TAction, TArg0, TArg1, TArg2>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2>, new()
 		{
 			var action = new TAction();
@@ -101,7 +101,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TAction Create<TAction, TArg0, TArg1, TArg2, TArg3>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+		public static TAction Create<TAction, TArg0, TArg1, TArg2, TArg3>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3>, new()
 		{
 			var action = new TAction();
@@ -110,7 +110,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TAction Create<TAction, TArg0, TArg1, TArg2, TArg3, TArg4>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
+		public static TAction Create<TAction, TArg0, TArg1, TArg2, TArg3, TArg4>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4>, new()
 		{
 			var action = new TAction();
@@ -119,7 +119,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TAction Create<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
+		public static TAction Create<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>, new()
 		{
 			var action = new TAction();
@@ -128,7 +128,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TAction Create<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
+		public static TAction Create<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>, new()
 		{
 			var action = new TAction();
@@ -137,7 +137,7 @@ namespace Zor.UtilityAI.Core
 		}
 
 		[NotNull]
-		public static TAction Create<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
+		public static TAction Create<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6, [CanBeNull] TArg7 arg7)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>, new()
 		{
 			var action = new TAction();

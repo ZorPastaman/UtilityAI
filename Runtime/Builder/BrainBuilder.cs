@@ -1,7 +1,8 @@
 ﻿// Copyright (c) 2023 Vladimir Popov zor1994@gmail.com https://github.com/ZorPastaman/UtilityAI
 
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Text;
+using JetBrains.Annotations;
 using Zor.SimpleBlackboard.Core;
 using Zor.UtilityAI.Core;
 
@@ -9,11 +10,11 @@ namespace Zor.UtilityAI.Builder
 {
 	public sealed class BrainBuilder
 	{
-		private readonly List<IActionBuilder> m_actionBuilders = new();
-		private readonly List<IConsiderationBuilder> m_considerationBuilders = new();
-		private readonly List<List<int>> m_actionConsiderationsBindings = new();
+		[NotNull] private readonly List<IActionBuilder> m_actionBuilders = new();
+		[NotNull] private readonly List<IConsiderationBuilder> m_considerationBuilders = new();
+		[NotNull] private readonly List<List<int>> m_actionConsiderationsBindings = new();
 
-		private readonly List<int>[] m_fastConsiderationsLookup = new List<int>[9]
+		[NotNull] private readonly List<int>[] m_fastConsiderationsLookup = new List<int>[9]
 		{
 			new(), new(), new(), new(), new(), new(), new(), new(), new()
 		};
@@ -24,55 +25,55 @@ namespace Zor.UtilityAI.Builder
 			m_actionConsiderationsBindings.Add(new List<int>());
 		}
 
-		public void AddAction<TAction, TArg>(TArg arg) where TAction : Action, ISetupable<TArg>, new()
+		public void AddAction<TAction, TArg>([CanBeNull] TArg arg) where TAction : Action, ISetupable<TArg>, new()
 		{
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg>(arg));
 			m_actionConsiderationsBindings.Add(new List<int>());
 		}
 
-		public void AddAction<TAction, TArg0, TArg1>(TArg0 arg0, TArg1 arg1)
+		public void AddAction<TAction, TArg0, TArg1>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1)
 			where TAction : Action, ISetupable<TArg0, TArg1>, new()
 		{
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1>(arg0, arg1));
 			m_actionConsiderationsBindings.Add(new List<int>());
 		}
 
-		public void AddAction<TAction, TArg0, TArg1, TArg2>(TArg0 arg0, TArg1 arg1, TArg2 arg2)
+		public void AddAction<TAction, TArg0, TArg1, TArg2>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2>, new()
 		{
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2>(arg0, arg1, arg2));
 			m_actionConsiderationsBindings.Add(new List<int>());
 		}
 
-		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3>, new()
 		{
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3>(arg0, arg1, arg2, arg3));
 			m_actionConsiderationsBindings.Add(new List<int>());
 		}
 
-		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
+		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4>, new()
 		{
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3, TArg4>(arg0, arg1, arg2, arg3, arg4));
 			m_actionConsiderationsBindings.Add(new List<int>());
 		}
 
-		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
+		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>, new()
 		{
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(arg0, arg1, arg2, arg3, arg4, arg5));
 			m_actionConsiderationsBindings.Add(new List<int>());
 		}
 
-		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
+		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>, new()
 		{
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(arg0, arg1, arg2, arg3, arg4, arg5, arg6));
 			m_actionConsiderationsBindings.Add(new List<int>());
 		}
 
-		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
+		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6, [CanBeNull] TArg7 arg7)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>, new()
 		{
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
@@ -108,7 +109,7 @@ namespace Zor.UtilityAI.Builder
 			}
 		}
 
-		public void AddConsideration<TConsideration, TArg>(TArg arg)
+		public void AddConsideration<TConsideration, TArg>([CanBeNull] TArg arg)
 			where TConsideration : Consideration, ISetupable<TArg>, new()
 		{
 			List<int> considerationsLookup = m_fastConsiderationsLookup[1];
@@ -139,7 +140,7 @@ namespace Zor.UtilityAI.Builder
 			}
 		}
 
-		public void AddConsideration<TConsideration, TArg0, TArg1>(TArg0 arg0, TArg1 arg1)
+		public void AddConsideration<TConsideration, TArg0, TArg1>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1>, new()
 		{
 			List<int> considerationsLookup = m_fastConsiderationsLookup[2];
@@ -171,7 +172,7 @@ namespace Zor.UtilityAI.Builder
 			}
 		}
 
-		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2>(TArg0 arg0, TArg1 arg1, TArg2 arg2)
+		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2>, new()
 		{
 			List<int> considerationsLookup = m_fastConsiderationsLookup[3];
@@ -204,7 +205,7 @@ namespace Zor.UtilityAI.Builder
 			}
 		}
 
-		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3>, new()
 		{
 			List<int> considerationsLookup = m_fastConsiderationsLookup[4];
@@ -238,7 +239,7 @@ namespace Zor.UtilityAI.Builder
 			}
 		}
 
-		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
+		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4>, new()
 		{
 			List<int> considerationsLookup = m_fastConsiderationsLookup[5];
@@ -273,7 +274,7 @@ namespace Zor.UtilityAI.Builder
 			}
 		}
 
-		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
+		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>, new()
 		{
 			List<int> considerationsLookup = m_fastConsiderationsLookup[6];
@@ -309,7 +310,7 @@ namespace Zor.UtilityAI.Builder
 			}
 		}
 
-		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
+		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>, new()
 		{
 			List<int> considerationsLookup = m_fastConsiderationsLookup[7];
@@ -346,7 +347,7 @@ namespace Zor.UtilityAI.Builder
 			}
 		}
 
-		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
+		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6, [CanBeNull] TArg7 arg7)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>, new()
 		{
 			List<int> considerationsLookup = m_fastConsiderationsLookup[8];
@@ -384,11 +385,13 @@ namespace Zor.UtilityAI.Builder
 			}
 		}
 
+		[NotNull]
 		public Brain Build()
 		{
 			return Build(new Blackboard());
 		}
 
+		[NotNull]
 		public Brain Build([NotNull] Blackboard blackboard)
 		{
 			Consideration[] considerations = MakeConsiderations();
@@ -398,6 +401,7 @@ namespace Zor.UtilityAI.Builder
 			return new Brain(considerations, actions, actionConsiderationsBindings, blackboard);
 		}
 
+		[NotNull, ItemNotNull]
 		private Consideration[] MakeConsiderations()
 		{
 			int count = m_considerationBuilders.Count;
@@ -411,6 +415,7 @@ namespace Zor.UtilityAI.Builder
 			return considerations;
 		}
 
+		[NotNull, ItemNotNull]
 		private Action[] MakeActions()
 		{
 			int count = m_actionBuilders.Count;
@@ -424,6 +429,7 @@ namespace Zor.UtilityAI.Builder
 			return actions;
 		}
 
+		[NotNull]
 		private int[][] MakeActionConsiderationsBindings()
 		{
 			int count = m_actionConsiderationsBindings.Count;
@@ -435,6 +441,31 @@ namespace Zor.UtilityAI.Builder
 			}
 
 			return bindings;
+		}
+
+		public override string ToString()
+		{
+			var stringBuilder = new StringBuilder();
+			stringBuilder.AppendLine("BrainBuilder");
+
+			for (int actionIndex = 0, actionCount = m_actionConsiderationsBindings.Count;
+				actionIndex < actionCount;
+				++actionIndex)
+			{
+				stringBuilder.AppendLine($"\t{m_actionBuilders[actionIndex]}");
+
+				List<int> considerationIndices = m_actionConsiderationsBindings[actionIndex];
+
+				for (int considerationIndex = 0, considerationCount = considerationIndices.Count;
+					considerationIndex < considerationCount;
+					++considerationIndex)
+				{
+					stringBuilder.AppendLine(
+						$"\t\t{m_considerationBuilders[considerationIndices[considerationIndex]]}");
+				}
+			}
+
+			return stringBuilder.ToString();
 		}
 	}
 }

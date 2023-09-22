@@ -9,11 +9,13 @@ namespace Zor.UtilityAI.Serialization
 {
 	public abstract class SerializedBrain_Base : ScriptableObject
 	{
+		[NotNull]
 		public Brain CreateBrain()
 		{
 			return CreateBrain(new Blackboard());
 		}
 
+		[NotNull]
 		public abstract Brain CreateBrain([NotNull] Blackboard blackboard);
 	}
 }

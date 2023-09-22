@@ -7,6 +7,7 @@ using UnityEngine;
 using Zor.SimpleBlackboard.Core;
 using Zor.UtilityAI.Builder;
 using Zor.UtilityAI.Core;
+using Zor.UtilityAI.Debugging;
 using Zor.UtilityAI.Serialization.SerializedActions;
 using Zor.UtilityAI.Serialization.SerializedConsiderations;
 
@@ -15,7 +16,7 @@ namespace Zor.UtilityAI.Serialization
 	[CreateAssetMenu(
 		menuName = "Utility AI/Serialized Brain",
 		fileName = "SerializedBrain",
-		order = 448
+		order = 449
 	)]
 	public sealed class SerializedBrain : SerializedBrain_Base
 	{
@@ -39,6 +40,8 @@ namespace Zor.UtilityAI.Serialization
 				return;
 			}
 
+			UtilityAIDebug.Log("Start deserializing brain");
+
 			m_builder = new BrainBuilder();
 
 			for (int actionIndex = 0, actionCount = m_SerializedActions.Length;
@@ -46,21 +49,38 @@ namespace Zor.UtilityAI.Serialization
 				++actionIndex)
 			{
 				SerializedAction_Base serializedActionBase = m_SerializedActions[actionIndex];
+				UtilityAIDebug.Log("Deserialize Action");
+				UtilityAIDebug.Log(serializedActionBase.actionType.FullName);
 				serializedActionBase.AddAction(m_builder);
 
 				int[] considerationIndices = m_ConsiderationIndices[actionIndex].considerations;
+				UtilityAIDebug.Log("Deserialize Considerations");
 
 				for (int considerationIndex = 0, considerationCount = considerationIndices.Length;
 					considerationIndex < considerationCount;
 					++considerationIndex)
 				{
-					m_SerializedConsiderations[considerationIndices[considerationIndex]].AddConsideration(m_builder);
+					SerializedConsideration_Base serializedConsiderationBase =
+						m_SerializedConsiderations[considerationIndices[considerationIndex]];
+					UtilityAIDebug.Log(serializedConsiderationBase.considerationType.FullName);
+					serializedConsiderationBase.AddConsideration(m_builder);
 				}
 			}
+
+			UtilityAIDebug.Log("Finish deserializing brain");
+		}
+
+		[ContextMenu("Log")]
+		private void Log()
+		{
+			Deserialize();
+			Debug.Log($"SerializedBehaviorTree {name}\n{m_builder}");
 		}
 
 		private void OnValidate()
 		{
+			m_builder = null;
+
 			int serializedActionCount = m_SerializedActions.Length;
 
 			Array.Resize(ref m_ConsiderationIndices, serializedActionCount);

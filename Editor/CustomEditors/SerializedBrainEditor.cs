@@ -48,7 +48,7 @@ namespace Zor.UtilityAI.CustomEditors
 
 					if (!m_editors.TryGetValue(objectValue, out Editor editor))
 					{
-						editor = CreateEditorWithContext(new[] { objectValue }, target);
+						editor = CreateEditorWithContext(new Object[] { objectValue }, target);
 						m_editors.Add(objectValue, editor);
 					}
 
@@ -100,7 +100,7 @@ namespace Zor.UtilityAI.CustomEditors
 
 					if (!m_editors.TryGetValue(objectValue, out Editor editor))
 					{
-						editor = CreateEditorWithContext(new[] { objectValue }, target);
+						editor = CreateEditorWithContext(new Object[] { objectValue }, target);
 						m_editors.Add(objectValue, editor);
 					}
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using Zor.SimpleBlackboard.Components;
 using Zor.UtilityAI.Builder;
 using Zor.UtilityAI.Core;
+using Zor.UtilityAI.Debugging;
 using Zor.UtilityAI.Serialization;
 
 namespace Zor.UtilityAI.Components
@@ -23,15 +24,35 @@ namespace Zor.UtilityAI.Components
 			m_brain.Tick();
 		}
 
+		[ContextMenu("Recreate Brain")]
+		public void RecreateBrain()
+		{
+			Awake();
+		}
+
 		private void Awake()
 		{
+#if DEBUG
+			if (m_SerializedBrain == null)
+			{
+				UtilityAIDebug.LogError(this, "Serialized brain is null");
+				return;
+			}
+
+			if (m_BlackboardContainer == null)
+			{
+				UtilityAIDebug.LogError(this, "Blackboard container is null");
+				return;
+			}
+#endif
+
 			m_brain = m_SerializedBrain.CreateBrain(m_BlackboardContainer.blackboard);
 			m_brain.Initialize();
 		}
 
 		private void OnDestroy()
 		{
-			m_brain.Dispose();
+			m_brain?.Dispose();
 		}
 	}
 }
