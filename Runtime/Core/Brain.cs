@@ -18,15 +18,19 @@ namespace Zor.UtilityAI.Core
 		[NotNull] private readonly float[] m_actionUtilities;
 		[NotNull] private readonly int[][] m_actionConsiderationsBindings;
 
+		private readonly BrainSettings m_brainSettings;
+
 		private int m_currentActionIndex;
 
 		public Brain([NotNull, ItemNotNull] Consideration[] considerations, [NotNull, ItemNotNull] Action[] actions,
-			[NotNull] int[][] actionConsiderationsBindings, [NotNull] Blackboard blackboard)
+			[NotNull] int[][] actionConsiderationsBindings, [NotNull] Blackboard blackboard,
+			BrainSettings brainSettings)
 		{
 			m_considerations = considerations;
 			m_actions = actions;
 			m_blackboard = blackboard;
 			m_actionConsiderationsBindings = actionConsiderationsBindings;
+			m_brainSettings = brainSettings;
 
 			m_utilities = new float[m_considerations.Length];
 			m_actionUtilities = new float[m_actions.Length];
@@ -181,6 +185,14 @@ namespace Zor.UtilityAI.Core
 			Profiler.BeginSample("Brain.TrySwitchAction");
 
 			if (m_currentActionIndex == newActionIndex)
+			{
+				return;
+			}
+
+			float currentUtility = m_actionUtilities[m_currentActionIndex];
+			float newUtility = m_actionUtilities[newActionIndex];
+
+			if (newUtility - currentUtility < m_brainSettings.minimalUtilityDifference)
 			{
 				return;
 			}

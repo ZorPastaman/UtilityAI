@@ -24,7 +24,7 @@ namespace Zor.UtilityAI.Tests
 			builder.AddConsideration<LinearConsideration, float, float, float, BlackboardPropertyName>(1f, 0f, 0f, value);
 			builder.AddAction<SetColorAction, Color, BlackboardPropertyName>(Color.red, colorValue);
 			builder.AddConsideration<LinearConsideration, float, float, float, BlackboardPropertyName>(-1f, 0f, 1f, value);
-			Brain brain = builder.Build(blackboard);
+			Brain brain = builder.Build(blackboard, new BrainSettings());
 			brain.Initialize();
 
 			blackboard.SetStructValue(value, 1f);

@@ -21,9 +21,10 @@ namespace Zor.UtilityAI.CustomEditors
 		private const string SerializedActionsPropertyName = "m_SerializedActions";
 		private const string SerializedConsiderationsPropertyName = "m_SerializedConsiderations";
 		private const string SerializedConsiderationIndicesPropertyName = "m_ConsiderationIndices";
-		private const string ConsiderationsProperty = "m_Considerations";
+		private const string ConsiderationsPropertyName = "m_Considerations";
+		private const string BrainSettingsPropertyName = "m_BrainSettings";
 
-		[NotNull] private readonly Dictionary<Object, Editor> m_editors = new Dictionary<Object, Editor>();
+		[NotNull] private readonly Dictionary<Object, Editor> m_editors = new();
 
 		private static bool s_considerationsFoldout = true;
 		private static bool s_actionsFoldout = true;
@@ -114,7 +115,7 @@ namespace Zor.UtilityAI.CustomEditors
 					EditorGUILayout.LabelField("Considerations");
 
 					SerializedProperty considerations = considerationIndicesProperty.GetArrayElementAtIndex(i)
-						.FindPropertyRelative(ConsiderationsProperty);
+						.FindPropertyRelative(ConsiderationsPropertyName);
 					MakeConsiderationsMenu(considerations, considerationsProperty);
 
 					if (GUILayout.Button("Remove Action"))
@@ -143,6 +144,9 @@ namespace Zor.UtilityAI.CustomEditors
 
 				EditorGUILayout.EndVertical();
 			}
+
+			SerializedProperty brainSettingsProperty = serializedObject.FindProperty(BrainSettingsPropertyName);
+			EditorGUILayout.PropertyField(brainSettingsProperty);
 		}
 
 		private void OnDestroy()
@@ -201,7 +205,7 @@ namespace Zor.UtilityAI.CustomEditors
 					actionsProperty.GetArrayElementAtIndex(index).objectReferenceValue = instance;
 					++considerationIndicesProperty.arraySize;
 					considerationIndicesProperty.GetArrayElementAtIndex(considerationIndicesProperty.arraySize - 1)
-						.FindPropertyRelative(ConsiderationsProperty).ClearArray();
+						.FindPropertyRelative(ConsiderationsPropertyName).ClearArray();
 
 					serializedObject.ApplyModifiedProperties();
 					AssetDatabase.SaveAssets();
@@ -218,7 +222,7 @@ namespace Zor.UtilityAI.CustomEditors
 				++actionIndex)
 			{
 				SerializedProperty considerations = considerationIndices.GetArrayElementAtIndex(actionIndex)
-					.FindPropertyRelative(ConsiderationsProperty);
+					.FindPropertyRelative(ConsiderationsPropertyName);
 
 				for (int considerationIndex = 0, considerationCount = considerations.arraySize;
 					considerationIndex < considerationCount;

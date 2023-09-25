@@ -495,11 +495,11 @@ namespace Zor.UtilityAI.Builder
 		}
 
 		[NotNull]
-		public Brain Build()
+		public Brain Build(BrainSettings brainSettings)
 		{
 			Profiler.BeginSample("BrainBuilder.Build");
 
-			Brain brain = Build(new Blackboard());
+			Brain brain = Build(new Blackboard(), brainSettings);
 
 			Profiler.EndSample();
 
@@ -507,7 +507,7 @@ namespace Zor.UtilityAI.Builder
 		}
 
 		[NotNull]
-		public Brain Build([NotNull] Blackboard blackboard)
+		public Brain Build([NotNull] Blackboard blackboard, BrainSettings brainSettings)
 		{
 			Profiler.BeginSample("BrainBuilder.Build");
 
@@ -515,7 +515,7 @@ namespace Zor.UtilityAI.Builder
 			Action[] actions = MakeActions();
 			int[][] actionConsiderationsBindings = MakeActionConsiderationsBindings();
 
-			var brain = new Brain(considerations, actions, actionConsiderationsBindings, blackboard);
+			var brain = new Brain(considerations, actions, actionConsiderationsBindings, blackboard, brainSettings);
 
 			Profiler.EndSample();
 

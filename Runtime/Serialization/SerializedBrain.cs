@@ -24,6 +24,7 @@ namespace Zor.UtilityAI.Serialization
 		[SerializeField] private SerializedAction_Base[] m_SerializedActions;
 		[SerializeField] private SerializedConsideration_Base[] m_SerializedConsiderations;
 		[SerializeField] private ConsiderationIndices[] m_ConsiderationIndices;
+		[SerializeField] private BrainSettings m_BrainSettings;
 
 		private BrainBuilder m_builder;
 
@@ -33,7 +34,7 @@ namespace Zor.UtilityAI.Serialization
 			Profiler.BeginSample(name);
 
 			Deserialize();
-			Brain brain = m_builder.Build(blackboard);
+			Brain brain = m_builder.Build(blackboard, m_BrainSettings);
 
 			Profiler.EndSample();
 			Profiler.EndSample();
