@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2023 Vladimir Popov zor1994@gmail.com https://github.com/ZorPastaman/UtilityAI
 
 using UnityEngine;
+using UnityEngine.Profiling;
 using Zor.SimpleBlackboard.Components;
 using Zor.UtilityAI.Builder;
 using Zor.UtilityAI.Core;
@@ -21,7 +22,11 @@ namespace Zor.UtilityAI.Components
 
 		public void Tick()
 		{
+			Profiler.BeginSample("UtilityAiAgent.Tick");
+
 			m_brain.Tick();
+
+			Profiler.EndSample();
 		}
 
 		[ContextMenu("Recreate Brain")]

@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Text;
 using JetBrains.Annotations;
+using UnityEngine.Profiling;
 using Zor.SimpleBlackboard.Core;
 using Zor.UtilityAI.Core;
 
@@ -21,67 +22,124 @@ namespace Zor.UtilityAI.Builder
 
 		public void AddAction<TAction>() where TAction : Action, INotSetupable, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddAction");
+			Profiler.BeginSample(typeof(TAction).FullName);
+
 			m_actionBuilders.Add(new ActionBuilder<TAction>());
 			m_actionConsiderationsBindings.Add(new List<int>());
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddAction<TAction, TArg>([CanBeNull] TArg arg) where TAction : Action, ISetupable<TArg>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddAction");
+			Profiler.BeginSample(typeof(TAction).FullName);
+
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg>(arg));
 			m_actionConsiderationsBindings.Add(new List<int>());
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddAction<TAction, TArg0, TArg1>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1)
 			where TAction : Action, ISetupable<TArg0, TArg1>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddAction");
+			Profiler.BeginSample(typeof(TAction).FullName);
+
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1>(arg0, arg1));
 			m_actionConsiderationsBindings.Add(new List<int>());
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddAction<TAction, TArg0, TArg1, TArg2>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddAction");
+			Profiler.BeginSample(typeof(TAction).FullName);
+
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2>(arg0, arg1, arg2));
 			m_actionConsiderationsBindings.Add(new List<int>());
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddAction");
+			Profiler.BeginSample(typeof(TAction).FullName);
+
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3>(arg0, arg1, arg2, arg3));
 			m_actionConsiderationsBindings.Add(new List<int>());
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddAction");
+			Profiler.BeginSample(typeof(TAction).FullName);
+
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3, TArg4>(arg0, arg1, arg2, arg3, arg4));
 			m_actionConsiderationsBindings.Add(new List<int>());
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddAction");
+			Profiler.BeginSample(typeof(TAction).FullName);
+
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(arg0, arg1, arg2, arg3, arg4, arg5));
 			m_actionConsiderationsBindings.Add(new List<int>());
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddAction");
+			Profiler.BeginSample(typeof(TAction).FullName);
+
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(arg0, arg1, arg2, arg3, arg4, arg5, arg6));
 			m_actionConsiderationsBindings.Add(new List<int>());
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6, [CanBeNull] TArg7 arg7)
 			where TAction : Action, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddAction");
+			Profiler.BeginSample(typeof(TAction).FullName);
+
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
 			m_actionConsiderationsBindings.Add(new List<int>());
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddConsideration<TConsideration>() where TConsideration : Consideration, INotSetupable, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddConsideration");
+			Profiler.BeginSample(typeof(TConsideration).FullName);
+
 			List<int> considerationsLookup = m_fastConsiderationsLookup[0];
 			int sameIndex = -1;
 
@@ -107,11 +165,17 @@ namespace Zor.UtilityAI.Builder
 				considerationsLookup.Add(count);
 				m_considerationBuilders.Add(new ConsiderationBuilder<TConsideration>());
 			}
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddConsideration<TConsideration, TArg>([CanBeNull] TArg arg)
 			where TConsideration : Consideration, ISetupable<TArg>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddConsideration");
+			Profiler.BeginSample(typeof(TConsideration).FullName);
+
 			List<int> considerationsLookup = m_fastConsiderationsLookup[1];
 			int sameIndex = -1;
 
@@ -138,11 +202,17 @@ namespace Zor.UtilityAI.Builder
 				considerationsLookup.Add(count);
 				m_considerationBuilders.Add(new ConsiderationBuilder<TConsideration, TArg>(arg));
 			}
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddConsideration<TConsideration, TArg0, TArg1>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddConsideration");
+			Profiler.BeginSample(typeof(TConsideration).FullName);
+
 			List<int> considerationsLookup = m_fastConsiderationsLookup[2];
 			int sameIndex = -1;
 
@@ -170,11 +240,17 @@ namespace Zor.UtilityAI.Builder
 				considerationsLookup.Add(count);
 				m_considerationBuilders.Add(new ConsiderationBuilder<TConsideration, TArg0, TArg1>(arg0, arg1));
 			}
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddConsideration");
+			Profiler.BeginSample(typeof(TConsideration).FullName);
+
 			List<int> considerationsLookup = m_fastConsiderationsLookup[3];
 			int sameIndex = -1;
 
@@ -203,11 +279,17 @@ namespace Zor.UtilityAI.Builder
 				considerationsLookup.Add(count);
 				m_considerationBuilders.Add(new ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2>(arg0, arg1, arg2));
 			}
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddConsideration");
+			Profiler.BeginSample(typeof(TConsideration).FullName);
+
 			List<int> considerationsLookup = m_fastConsiderationsLookup[4];
 			int sameIndex = -1;
 
@@ -237,11 +319,17 @@ namespace Zor.UtilityAI.Builder
 				considerationsLookup.Add(count);
 				m_considerationBuilders.Add(new ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3>(arg0, arg1, arg2, arg3));
 			}
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddConsideration");
+			Profiler.BeginSample(typeof(TConsideration).FullName);
+
 			List<int> considerationsLookup = m_fastConsiderationsLookup[5];
 			int sameIndex = -1;
 
@@ -272,11 +360,17 @@ namespace Zor.UtilityAI.Builder
 				considerationsLookup.Add(count);
 				m_considerationBuilders.Add(new ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>(arg0, arg1, arg2, arg3, arg4));
 			}
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddConsideration");
+			Profiler.BeginSample(typeof(TConsideration).FullName);
+
 			List<int> considerationsLookup = m_fastConsiderationsLookup[6];
 			int sameIndex = -1;
 
@@ -308,11 +402,17 @@ namespace Zor.UtilityAI.Builder
 				considerationsLookup.Add(count);
 				m_considerationBuilders.Add(new ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(arg0, arg1, arg2, arg3, arg4, arg5));
 			}
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddConsideration");
+			Profiler.BeginSample(typeof(TConsideration).FullName);
+
 			List<int> considerationsLookup = m_fastConsiderationsLookup[7];
 			int sameIndex = -1;
 
@@ -345,11 +445,17 @@ namespace Zor.UtilityAI.Builder
 				considerationsLookup.Add(count);
 				m_considerationBuilders.Add(new ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(arg0, arg1, arg2, arg3, arg4, arg5, arg6));
 			}
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		public void AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6, [CanBeNull] TArg7 arg7)
 			where TConsideration : Consideration, ISetupable<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>, new()
 		{
+			Profiler.BeginSample("BrainBuilder.AddConsideration");
+			Profiler.BeginSample(typeof(TConsideration).FullName);
+
 			List<int> considerationsLookup = m_fastConsiderationsLookup[8];
 			int sameIndex = -1;
 
@@ -383,22 +489,37 @@ namespace Zor.UtilityAI.Builder
 				considerationsLookup.Add(count);
 				m_considerationBuilders.Add(new ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
 			}
+
+			Profiler.EndSample();
+			Profiler.EndSample();
 		}
 
 		[NotNull]
 		public Brain Build()
 		{
-			return Build(new Blackboard());
+			Profiler.BeginSample("BrainBuilder.Build");
+
+			Brain brain = Build(new Blackboard());
+
+			Profiler.EndSample();
+
+			return brain;
 		}
 
 		[NotNull]
 		public Brain Build([NotNull] Blackboard blackboard)
 		{
+			Profiler.BeginSample("BrainBuilder.Build");
+
 			Consideration[] considerations = MakeConsiderations();
 			Action[] actions = MakeActions();
 			int[][] actionConsiderationsBindings = MakeActionConsiderationsBindings();
 
-			return new Brain(considerations, actions, actionConsiderationsBindings, blackboard);
+			var brain = new Brain(considerations, actions, actionConsiderationsBindings, blackboard);
+
+			Profiler.EndSample();
+
+			return brain;
 		}
 
 		[NotNull, ItemNotNull]

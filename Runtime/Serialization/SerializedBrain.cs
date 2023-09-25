@@ -4,6 +4,7 @@ using System;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Profiling;
 using Zor.SimpleBlackboard.Core;
 using Zor.UtilityAI.Builder;
 using Zor.UtilityAI.Core;
@@ -28,9 +29,16 @@ namespace Zor.UtilityAI.Serialization
 
 		public override Brain CreateBrain(Blackboard blackboard)
 		{
-			Deserialize();
+			Profiler.BeginSample("SerializedBrain.CreateBrain");
+			Profiler.BeginSample(name);
 
-			return m_builder.Build(blackboard);
+			Deserialize();
+			Brain brain = m_builder.Build(blackboard);
+
+			Profiler.EndSample();
+			Profiler.EndSample();
+
+			return brain;
 		}
 
 		private void Deserialize()
@@ -39,6 +47,8 @@ namespace Zor.UtilityAI.Serialization
 			{
 				return;
 			}
+
+			Profiler.BeginSample("SerializedBrain.Deserialize");
 
 			UtilityAIDebug.Log("Start deserializing brain");
 
@@ -68,6 +78,8 @@ namespace Zor.UtilityAI.Serialization
 			}
 
 			UtilityAIDebug.Log("Finish deserializing brain");
+
+			Profiler.EndSample();
 		}
 
 		[ContextMenu("Log")]
