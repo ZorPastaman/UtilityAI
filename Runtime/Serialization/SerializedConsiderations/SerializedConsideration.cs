@@ -20,7 +20,7 @@ namespace Zor.UtilityAI.Serialization.SerializedConsiderations
 
 		public sealed override void AddConsideration(BrainBuilder builder)
 		{
-			builder.AddConsideration<TConsideration>();
+			builder.AddConsideration<TConsideration>(name);
 		}
 	}
 
@@ -37,7 +37,7 @@ namespace Zor.UtilityAI.Serialization.SerializedConsiderations
 
 		public sealed override void AddConsideration(BrainBuilder builder)
 		{
-			builder.AddConsideration<TConsideration, TArg>(m_Arg);
+			builder.AddConsideration<TConsideration, TArg>(m_Arg, name);
 		}
 	}
 
@@ -55,7 +55,7 @@ namespace Zor.UtilityAI.Serialization.SerializedConsiderations
 
 		public sealed override void AddConsideration(BrainBuilder builder)
 		{
-			builder.AddConsideration<TConsideration, TArg0, TArg1>(m_Arg0, m_Arg1);
+			builder.AddConsideration<TConsideration, TArg0, TArg1>(m_Arg0, m_Arg1, name);
 		}
 	}
 
@@ -74,7 +74,7 @@ namespace Zor.UtilityAI.Serialization.SerializedConsiderations
 
 		public sealed override void AddConsideration(BrainBuilder builder)
 		{
-			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2>(m_Arg0, m_Arg1, m_Arg2);
+			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2>(m_Arg0, m_Arg1, m_Arg2, name);
 		}
 	}
 
@@ -94,7 +94,7 @@ namespace Zor.UtilityAI.Serialization.SerializedConsiderations
 
 		public sealed override void AddConsideration(BrainBuilder builder)
 		{
-			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3>(m_Arg0, m_Arg1, m_Arg2, m_Arg3);
+			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, name);
 		}
 	}
 
@@ -115,7 +115,7 @@ namespace Zor.UtilityAI.Serialization.SerializedConsiderations
 
 		public sealed override void AddConsideration(BrainBuilder builder)
 		{
-			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4);
+			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, name);
 		}
 	}
 
@@ -137,7 +137,7 @@ namespace Zor.UtilityAI.Serialization.SerializedConsiderations
 
 		public sealed override void AddConsideration(BrainBuilder builder)
 		{
-			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5);
+			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5, name);
 		}
 	}
 
@@ -160,7 +160,7 @@ namespace Zor.UtilityAI.Serialization.SerializedConsiderations
 
 		public sealed override void AddConsideration(BrainBuilder builder)
 		{
-			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5, m_Arg6);
+			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5, m_Arg6, name);
 		}
 	}
 
@@ -184,7 +184,7 @@ namespace Zor.UtilityAI.Serialization.SerializedConsiderations
 
 		public sealed override void AddConsideration(BrainBuilder builder)
 		{
-			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5, m_Arg6, m_Arg7);
+			builder.AddConsideration<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5, m_Arg6, m_Arg7, name);
 		}
 	}
 }

@@ -21,7 +21,7 @@ namespace Zor.UtilityAI.Serialization.SerializedActions
 
 		public sealed override void AddAction(BrainBuilder builder)
 		{
-			builder.AddAction<TAction>();
+			builder.AddAction<TAction>(name);
 		}
 	}
 
@@ -38,7 +38,7 @@ namespace Zor.UtilityAI.Serialization.SerializedActions
 
 		public sealed override void AddAction(BrainBuilder builder)
 		{
-			builder.AddAction<TAction, TArg>(m_Arg);
+			builder.AddAction<TAction, TArg>(m_Arg, name);
 		}
 	}
 
@@ -56,7 +56,7 @@ namespace Zor.UtilityAI.Serialization.SerializedActions
 
 		public sealed override void AddAction(BrainBuilder builder)
 		{
-			builder.AddAction<TAction, TArg0, TArg1>(m_Arg0, m_Arg1);
+			builder.AddAction<TAction, TArg0, TArg1>(m_Arg0, m_Arg1, name);
 		}
 	}
 
@@ -75,7 +75,7 @@ namespace Zor.UtilityAI.Serialization.SerializedActions
 
 		public sealed override void AddAction(BrainBuilder builder)
 		{
-			builder.AddAction<TAction, TArg0, TArg1, TArg2>(m_Arg0, m_Arg1, m_Arg2);
+			builder.AddAction<TAction, TArg0, TArg1, TArg2>(m_Arg0, m_Arg1, m_Arg2, name);
 		}
 	}
 
@@ -95,7 +95,7 @@ namespace Zor.UtilityAI.Serialization.SerializedActions
 
 		public sealed override void AddAction(BrainBuilder builder)
 		{
-			builder.AddAction<TAction, TArg0, TArg1, TArg2, TArg3>(m_Arg0, m_Arg1, m_Arg2, m_Arg3);
+			builder.AddAction<TAction, TArg0, TArg1, TArg2, TArg3>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, name);
 		}
 	}
 
@@ -116,7 +116,7 @@ namespace Zor.UtilityAI.Serialization.SerializedActions
 
 		public sealed override void AddAction(BrainBuilder builder)
 		{
-			builder.AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4);
+			builder.AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, name);
 		}
 	}
 
@@ -138,7 +138,7 @@ namespace Zor.UtilityAI.Serialization.SerializedActions
 
 		public sealed override void AddAction(BrainBuilder builder)
 		{
-			builder.AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5);
+			builder.AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5, name);
 		}
 	}
 
@@ -161,7 +161,7 @@ namespace Zor.UtilityAI.Serialization.SerializedActions
 
 		public sealed override void AddAction(BrainBuilder builder)
 		{
-			builder.AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5, m_Arg6);
+			builder.AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5, m_Arg6, name);
 		}
 	}
 
@@ -185,7 +185,7 @@ namespace Zor.UtilityAI.Serialization.SerializedActions
 
 		public sealed override void AddAction(BrainBuilder builder)
 		{
-			builder.AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5, m_Arg6, m_Arg7);
+			builder.AddAction<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(m_Arg0, m_Arg1, m_Arg2, m_Arg3, m_Arg4, m_Arg5, m_Arg6, m_Arg7, name);
 		}
 	}
 }

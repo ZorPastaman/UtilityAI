@@ -1,10 +1,12 @@
 // Copyright (c) 2023 Vladimir Popov zor1994@gmail.com https://github.com/ZorPastaman/UtilityAI
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using UnityEngine.Profiling;
 using Zor.SimpleBlackboard.Core;
+using Zor.UtilityAI.Debugging;
 
 namespace Zor.UtilityAI.Core
 {
@@ -88,6 +90,51 @@ namespace Zor.UtilityAI.Core
 			DisposeActions();
 
 			Profiler.EndSample();
+		}
+
+		public void FillDebugInfo([NotNull] BrainDebugInfo brainDebugInfo)
+		{
+			brainDebugInfo.brainSettings = m_brainSettings;
+
+			int actionCount = m_actions.Length;
+
+			List<BrainDebugInfo.ActionInfo> actionInfos = brainDebugInfo.actionInfos;
+			for (int countDifference = actionCount - actionInfos.Count;
+				countDifference > 0;
+				--countDifference)
+			{
+				actionInfos.Add(new BrainDebugInfo.ActionInfo());
+			}
+			actionInfos.RemoveRange(actionCount, actionInfos.Count - actionCount);
+
+			for (int actionIndex = 0; actionIndex < actionCount; ++actionIndex)
+			{
+				BrainDebugInfo.ActionInfo actionInfo = actionInfos[actionIndex];
+				actionInfo.name = m_actions[actionIndex].name;
+				actionInfo.utility = m_actionUtilities[actionIndex];
+				actionInfo.isActive = m_currentActionIndex == actionIndex;
+
+				int[] considerationBindings = m_actionConsiderationsBindings[actionIndex];
+				int considerationCount = considerationBindings.Length;
+
+				List<BrainDebugInfo.ConsiderationInfo> considerationInfos = actionInfo.considerationInfos;
+
+				for (int countDifference = considerationCount - considerationInfos.Count;
+					countDifference > 0;
+					--countDifference)
+				{
+					considerationInfos.Add(new BrainDebugInfo.ConsiderationInfo());
+				}
+				considerationInfos.RemoveRange(considerationCount, considerationInfos.Count - considerationCount);
+
+				for (int considerationIndex = 0; considerationIndex < considerationCount; ++considerationIndex)
+				{
+					int index = considerationBindings[considerationIndex];
+					BrainDebugInfo.ConsiderationInfo considerationInfo = considerationInfos[considerationIndex];
+					considerationInfo.name = m_considerations[index].name;
+					considerationInfo.utility = m_utilities[index];
+				}
+			}
 		}
 
 		private void InitializeConsiderations()

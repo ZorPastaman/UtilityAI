@@ -10,6 +10,13 @@ namespace Zor.UtilityAI.Builder
 	internal sealed class ConsiderationBuilder<TConsideration> : IConsiderationBuilder
 		where TConsideration : Consideration, INotSetupable, new()
 	{
+		[NotNull] private readonly string m_name;
+
+		public ConsiderationBuilder([NotNull] string name)
+		{
+			m_name = name;
+		}
+
 		public Type considerationType
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]
@@ -18,12 +25,14 @@ namespace Zor.UtilityAI.Builder
 
 		public Consideration Build()
 		{
-			return Consideration.Create<TConsideration>();
+			var consideration = Consideration.Create<TConsideration>();
+			consideration.name = m_name;
+			return consideration;
 		}
 
 		public override string ToString()
 		{
-			return $"Serialized {considerationType.FullName}";
+			return $"Serialized {considerationType.FullName} \"{m_name}\"";
 		}
 	}
 
@@ -32,9 +41,13 @@ namespace Zor.UtilityAI.Builder
 	{
 		[CanBeNull] private readonly TArg m_arg;
 
-		public ConsiderationBuilder([CanBeNull] TArg arg)
+		[NotNull] private readonly string m_name;
+
+		public ConsiderationBuilder([CanBeNull] TArg arg, [NotNull] string name)
 		{
 			m_arg = arg;
+
+			m_name = name;
 		}
 
 		[CanBeNull]
@@ -52,12 +65,14 @@ namespace Zor.UtilityAI.Builder
 
 		public Consideration Build()
 		{
-			return Consideration.Create<TConsideration, TArg>(m_arg);
+			TConsideration consideration = Consideration.Create<TConsideration, TArg>(m_arg);
+			consideration.name = m_name;
+			return consideration;
 		}
 
 		public override string ToString()
 		{
-			return $"Serialized {considerationType.FullName} {{{m_arg}}}";
+			return $"Serialized {considerationType.FullName} {{{m_arg}}} \"{m_name}\"";
 		}
 	}
 
@@ -67,10 +82,14 @@ namespace Zor.UtilityAI.Builder
 		[CanBeNull] private readonly TArg0 m_arg0;
 		[CanBeNull] private readonly TArg1 m_arg1;
 
-		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1)
+		[NotNull] private readonly string m_name;
+
+		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [NotNull] string name)
 		{
 			m_arg0 = arg0;
 			m_arg1 = arg1;
+
+			m_name = name;
 		}
 
 		[CanBeNull]
@@ -95,12 +114,14 @@ namespace Zor.UtilityAI.Builder
 
 		public Consideration Build()
 		{
-			return Consideration.Create<TConsideration, TArg0, TArg1>(m_arg0, m_arg1);
+			TConsideration consideration = Consideration.Create<TConsideration, TArg0, TArg1>(m_arg0, m_arg1);
+			consideration.name = m_name;
+			return consideration;
 		}
 
 		public override string ToString()
 		{
-			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}}}";
+			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}}} \"{m_name}\"";
 		}
 	}
 
@@ -111,11 +132,16 @@ namespace Zor.UtilityAI.Builder
 		[CanBeNull] private readonly TArg1 m_arg1;
 		[CanBeNull] private readonly TArg2 m_arg2;
 
-		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2)
+		[NotNull] private readonly string m_name;
+
+		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2,
+			[NotNull] string name)
 		{
 			m_arg0 = arg0;
 			m_arg1 = arg1;
 			m_arg2 = arg2;
+
+			m_name = name;
 		}
 
 		[CanBeNull]
@@ -147,12 +173,14 @@ namespace Zor.UtilityAI.Builder
 
 		public Consideration Build()
 		{
-			return Consideration.Create<TConsideration, TArg0, TArg1, TArg2>(m_arg0, m_arg1, m_arg2);
+			TConsideration consideration = Consideration.Create<TConsideration, TArg0, TArg1, TArg2>(m_arg0, m_arg1, m_arg2);
+			consideration.name = m_name;
+			return consideration;
 		}
 
 		public override string ToString()
 		{
-			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}}}";
+			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}}} \"{m_name}\"";
 		}
 	}
 
@@ -164,12 +192,17 @@ namespace Zor.UtilityAI.Builder
 		[CanBeNull] private readonly TArg2 m_arg2;
 		[CanBeNull] private readonly TArg3 m_arg3;
 
-		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3)
+		[NotNull] private readonly string m_name;
+
+		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3,
+			[NotNull] string name)
 		{
 			m_arg0 = arg0;
 			m_arg1 = arg1;
 			m_arg2 = arg2;
 			m_arg3 = arg3;
+
+			m_name = name;
 		}
 
 		[CanBeNull]
@@ -208,12 +241,14 @@ namespace Zor.UtilityAI.Builder
 
 		public Consideration Build()
 		{
-			return Consideration.Create<TConsideration, TArg0, TArg1, TArg2, TArg3>(m_arg0, m_arg1, m_arg2, m_arg3);
+			TConsideration consideration = Consideration.Create<TConsideration, TArg0, TArg1, TArg2, TArg3>(m_arg0, m_arg1, m_arg2, m_arg3);
+			consideration.name = m_name;
+			return consideration;
 		}
 
 		public override string ToString()
 		{
-			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}}}";
+			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}}} \"{m_name}\"";
 		}
 	}
 
@@ -226,13 +261,18 @@ namespace Zor.UtilityAI.Builder
 		[CanBeNull] private readonly TArg3 m_arg3;
 		[CanBeNull] private readonly TArg4 m_arg4;
 
-		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4)
+		[NotNull] private readonly string m_name;
+
+		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4,
+			[NotNull] string name)
 		{
 			m_arg0 = arg0;
 			m_arg1 = arg1;
 			m_arg2 = arg2;
 			m_arg3 = arg3;
 			m_arg4 = arg4;
+
+			m_name = name;
 		}
 
 		[CanBeNull]
@@ -278,13 +318,14 @@ namespace Zor.UtilityAI.Builder
 
 		public Consideration Build()
 		{
-			return Consideration.Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>(m_arg0, m_arg1, m_arg2,
-				m_arg3, m_arg4);
+			TConsideration consideration = Consideration.Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4>(m_arg0, m_arg1, m_arg2, m_arg3, m_arg4);
+			consideration.name = m_name;
+			return consideration;
 		}
 
 		public override string ToString()
 		{
-			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}, {m_arg4}}}";
+			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}, {m_arg4}}} \"{m_name}\"";
 		}
 	}
 
@@ -298,7 +339,10 @@ namespace Zor.UtilityAI.Builder
 		[CanBeNull] private readonly TArg4 m_arg4;
 		[CanBeNull] private readonly TArg5 m_arg5;
 
-		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5)
+		[NotNull] private readonly string m_name;
+
+		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5,
+			[NotNull] string name)
 		{
 			m_arg0 = arg0;
 			m_arg1 = arg1;
@@ -306,6 +350,8 @@ namespace Zor.UtilityAI.Builder
 			m_arg3 = arg3;
 			m_arg4 = arg4;
 			m_arg5 = arg5;
+
+			m_name = name;
 		}
 
 		[CanBeNull]
@@ -358,13 +404,14 @@ namespace Zor.UtilityAI.Builder
 
 		public Consideration Build()
 		{
-			return Consideration.Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(m_arg0, m_arg1,
-				m_arg2, m_arg3, m_arg4, m_arg5);
+			TConsideration consideration = Consideration.Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(m_arg0, m_arg1, m_arg2, m_arg3, m_arg4, m_arg5);
+			consideration.name = m_name;
+			return consideration;
 		}
 
 		public override string ToString()
 		{
-			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}, {m_arg4}, {m_arg5}}}";
+			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}, {m_arg4}, {m_arg5}}} \"{m_name}\"";
 		}
 	}
 
@@ -379,7 +426,10 @@ namespace Zor.UtilityAI.Builder
 		[CanBeNull] private readonly TArg5 m_arg5;
 		[CanBeNull] private readonly TArg6 m_arg6;
 
-		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6)
+		[NotNull] private readonly string m_name;
+
+		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6,
+			[NotNull] string name)
 		{
 			m_arg0 = arg0;
 			m_arg1 = arg1;
@@ -388,6 +438,8 @@ namespace Zor.UtilityAI.Builder
 			m_arg4 = arg4;
 			m_arg5 = arg5;
 			m_arg6 = arg6;
+
+			m_name = name;
 		}
 
 		[CanBeNull]
@@ -447,13 +499,14 @@ namespace Zor.UtilityAI.Builder
 
 		public Consideration Build()
 		{
-			return Consideration.Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(m_arg0, m_arg1,
-				m_arg2, m_arg3, m_arg4, m_arg5, m_arg6);
+			TConsideration consideration = Consideration.Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(m_arg0, m_arg1, m_arg2, m_arg3, m_arg4, m_arg5, m_arg6);
+			consideration.name = m_name;
+			return consideration;
 		}
 
 		public override string ToString()
 		{
-			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}, {m_arg4}, {m_arg5}, {m_arg6}}}";
+			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}, {m_arg4}, {m_arg5}, {m_arg6}}} \"{m_name}\"";
 		}
 	}
 
@@ -469,7 +522,10 @@ namespace Zor.UtilityAI.Builder
 		[CanBeNull] private readonly TArg6 m_arg6;
 		[CanBeNull] private readonly TArg7 m_arg7;
 
-		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6, [CanBeNull] TArg7 arg7)
+		[NotNull] private readonly string m_name;
+
+		public ConsiderationBuilder([CanBeNull] TArg0 arg0, [CanBeNull] TArg1 arg1, [CanBeNull] TArg2 arg2, [CanBeNull] TArg3 arg3, [CanBeNull] TArg4 arg4, [CanBeNull] TArg5 arg5, [CanBeNull] TArg6 arg6, [CanBeNull] TArg7 arg7,
+			[NotNull] string name)
 		{
 			m_arg0 = arg0;
 			m_arg1 = arg1;
@@ -479,6 +535,8 @@ namespace Zor.UtilityAI.Builder
 			m_arg5 = arg5;
 			m_arg6 = arg6;
 			m_arg7 = arg7;
+
+			m_name = name;
 		}
 
 		[CanBeNull]
@@ -545,13 +603,14 @@ namespace Zor.UtilityAI.Builder
 
 		public Consideration Build()
 		{
-			return Consideration.Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(m_arg0, m_arg1,
-				m_arg2, m_arg3, m_arg4, m_arg5, m_arg6, m_arg7);
+			TConsideration consideration = Consideration.Create<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(m_arg0, m_arg1, m_arg2, m_arg3, m_arg4, m_arg5, m_arg6, m_arg7);
+			consideration.name = m_name;
+			return consideration;
 		}
 
 		public override string ToString()
 		{
-			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}, {m_arg4}, {m_arg5}, {m_arg6}, {m_arg7}}}";
+			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}, {m_arg4}, {m_arg5}, {m_arg6}, {m_arg7}}} \"{m_name}\"";
 		}
 	}
 }

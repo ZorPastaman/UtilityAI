@@ -1,5 +1,6 @@
 ﻿// Copyright (c) 2023 Vladimir Popov zor1994@gmail.com https://github.com/ZorPastaman/UtilityAI
 
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Profiling;
 using Zor.SimpleBlackboard.Components;
@@ -20,13 +21,20 @@ namespace Zor.UtilityAI.Components
 
 		private Brain m_brain;
 
+		private string m_name;
+
 		public void Tick()
 		{
-			Profiler.BeginSample("UtilityAiAgent.Tick");
+			Profiler.BeginSample(m_name);
 
 			m_brain.Tick();
 
 			Profiler.EndSample();
+		}
+
+		public void FillDebugInfo([NotNull] BrainDebugInfo brainDebugInfo)
+		{
+			m_brain?.FillDebugInfo(brainDebugInfo);
 		}
 
 		[ContextMenu("Recreate Brain")]
@@ -53,6 +61,8 @@ namespace Zor.UtilityAI.Components
 
 			m_brain = m_SerializedBrain.CreateBrain(m_BlackboardContainer.blackboard);
 			m_brain.Initialize();
+
+			m_name = gameObject.name;
 		}
 
 		private void OnDestroy()

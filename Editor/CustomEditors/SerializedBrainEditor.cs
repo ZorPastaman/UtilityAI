@@ -145,8 +145,13 @@ namespace Zor.UtilityAI.CustomEditors
 				EditorGUILayout.EndVertical();
 			}
 
+			EditorGUI.BeginChangeCheck();
 			SerializedProperty brainSettingsProperty = serializedObject.FindProperty(BrainSettingsPropertyName);
 			EditorGUILayout.PropertyField(brainSettingsProperty);
+			if (EditorGUI.EndChangeCheck())
+			{
+				serializedObject.ApplyModifiedProperties();
+			}
 		}
 
 		private void OnDestroy()

@@ -11,6 +11,8 @@ namespace Zor.UtilityAI.Core
 	{
 		private Blackboard m_blackboard;
 
+		public string name { get; set; }
+
 		[NotNull]
 		protected Blackboard blackboard
 		{
