@@ -360,4 +360,36 @@ namespace Zor.UtilityAI.Builder
 			return $"Serialized {actionType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}, {m_arg4}, {m_arg5}, {m_arg6}, {m_arg7}}} \"{m_name}\"";
 		}
 	}
+
+	internal sealed class ActionBuilder : IActionBuilder
+	{
+		[NotNull] private readonly Type m_actionType;
+		[CanBeNull] private readonly object[] m_parameters;
+
+		[NotNull] private readonly string m_name;
+
+		public ActionBuilder([NotNull] Type actionType, [CanBeNull, ItemCanBeNull] object[] parameters,
+			string name)
+		{
+			m_actionType = actionType;
+			m_parameters = parameters;
+
+			m_name = name;
+		}
+
+		public Type actionType
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]
+			get => m_actionType;
+		}
+
+		public Action Build()
+		{
+			Action action = m_parameters != null
+				? Action.Create(m_actionType, m_parameters)
+				: Action.Create(m_actionType);
+			action.name = m_name;
+			return action;
+		}
+	}
 }

@@ -1,11 +1,13 @@
 ﻿// Copyright (c) 2023 Vladimir Popov zor1994@gmail.com https://github.com/ZorPastaman/UtilityAI
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 using JetBrains.Annotations;
 using UnityEngine.Profiling;
 using Zor.SimpleBlackboard.Core;
 using Zor.UtilityAI.Core;
+using Action = Zor.UtilityAI.Core.Action;
 
 namespace Zor.UtilityAI.Builder
 {
@@ -135,6 +137,19 @@ namespace Zor.UtilityAI.Builder
 			Profiler.BeginSample(typeof(TAction).FullName);
 
 			m_actionBuilders.Add(new ActionBuilder<TAction, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, name));
+			m_actionConsiderationsBindings.Add(new List<int>());
+
+			Profiler.EndSample();
+			Profiler.EndSample();
+		}
+
+		public void AddAction([NotNull] Type actionType, string name = "",
+			[CanBeNull, ItemCanBeNull] params object[] parameters)
+		{
+			Profiler.BeginSample("BrainBuilder.AddAction");
+			Profiler.BeginSample(actionType.FullName);
+
+			m_actionBuilders.Add(new ActionBuilder(actionType, parameters, name));
 			m_actionConsiderationsBindings.Add(new List<int>());
 
 			Profiler.EndSample();
@@ -502,6 +517,20 @@ namespace Zor.UtilityAI.Builder
 				considerationsLookup.Add(count);
 				m_considerationBuilders.Add(new ConsiderationBuilder<TConsideration, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, name));
 			}
+
+			Profiler.EndSample();
+			Profiler.EndSample();
+		}
+
+		public void AddConsideration([NotNull] Type considerationType, [NotNull] string name ="",
+			[CanBeNull, ItemCanBeNull] params object[] parameters)
+		{
+			Profiler.BeginSample("BrainBuilder.AddConsideration");
+			Profiler.BeginSample(considerationType.FullName);
+
+			int count = m_considerationBuilders.Count;
+			m_actionConsiderationsBindings[^1].Add(count);
+			m_considerationBuilders.Add(new ConsiderationBuilder(considerationType, parameters, name));
 
 			Profiler.EndSample();
 			Profiler.EndSample();

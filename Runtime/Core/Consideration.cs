@@ -1,5 +1,6 @@
 ﻿// Copyright (c) 2023 Vladimir Popov zor1994@gmail.com https://github.com/ZorPastaman/UtilityAI
 
+using System;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using UnityEngine.Profiling;
@@ -185,6 +186,35 @@ namespace Zor.UtilityAI.Core
 
 			var consideration = new TConsideration();
 			consideration.Setup(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+
+			Profiler.EndSample();
+			Profiler.EndSample();
+
+			return consideration;
+		}
+
+		[NotNull]
+		public static Consideration Create([NotNull] Type type)
+		{
+			Profiler.BeginSample("Consideration.Create");
+			Profiler.BeginSample(type.FullName);
+
+			var consideration = (Consideration)Activator.CreateInstance(type);
+
+			Profiler.EndSample();
+			Profiler.EndSample();
+
+			return consideration;
+		}
+
+		[NotNull]
+		public static Consideration Create([NotNull] Type type, [NotNull, ItemCanBeNull] params object[] parameters)
+		{
+			Profiler.BeginSample("Consideration.Create");
+			Profiler.BeginSample(type.FullName);
+
+			var consideration = (Consideration)Activator.CreateInstance(type);
+			SetupableHelper.CreateSetup(consideration, parameters);
 
 			Profiler.EndSample();
 			Profiler.EndSample();

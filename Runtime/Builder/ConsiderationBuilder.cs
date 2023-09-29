@@ -613,4 +613,36 @@ namespace Zor.UtilityAI.Builder
 			return $"Serialized {considerationType.FullName} {{{m_arg0}, {m_arg1}, {m_arg2}, {m_arg3}, {m_arg4}, {m_arg5}, {m_arg6}, {m_arg7}}} \"{m_name}\"";
 		}
 	}
+
+	internal sealed class ConsiderationBuilder : IConsiderationBuilder
+	{
+		[NotNull] private readonly Type m_considerationType;
+		[CanBeNull] private readonly object[] m_parameters;
+
+		[NotNull] private readonly string m_name;
+
+		public ConsiderationBuilder([NotNull] Type considerationType, [CanBeNull, ItemCanBeNull] object[] parameters,
+			[NotNull] string name)
+		{
+			m_considerationType = considerationType;
+			m_parameters = parameters;
+
+			m_name = name;
+		}
+
+		public Type considerationType
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]
+			get => m_considerationType;
+		}
+
+		public Consideration Build()
+		{
+			Consideration consideration = m_parameters != null
+				? Consideration.Create(m_considerationType, m_parameters)
+				: Consideration.Create(m_considerationType);
+			consideration.name = m_name;
+			return consideration;
+		}
+	}
 }

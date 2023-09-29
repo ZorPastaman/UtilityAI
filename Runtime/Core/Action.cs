@@ -1,5 +1,6 @@
 ﻿// Copyright (c) 2023 Vladimir Popov zor1994@gmail.com https://github.com/ZorPastaman/UtilityAI
 
+using System;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using UnityEngine.Profiling;
@@ -118,7 +119,10 @@ namespace Zor.UtilityAI.Core
 			Profiler.BeginSample(typeof(TAction).FullName);
 
 			var action = new TAction();
+
+			Profiler.BeginSample("Setup");
 			action.Setup(arg);
+			Profiler.EndSample();
 
 			Profiler.EndSample();
 			Profiler.EndSample();
@@ -134,7 +138,10 @@ namespace Zor.UtilityAI.Core
 			Profiler.BeginSample(typeof(TAction).FullName);
 
 			var action = new TAction();
+
+			Profiler.BeginSample("Setup");
 			action.Setup(arg0, arg1);
+			Profiler.EndSample();
 
 			Profiler.EndSample();
 			Profiler.EndSample();
@@ -150,7 +157,10 @@ namespace Zor.UtilityAI.Core
 			Profiler.BeginSample(typeof(TAction).FullName);
 
 			var action = new TAction();
+
+			Profiler.BeginSample("Setup");
 			action.Setup(arg0, arg1, arg2);
+			Profiler.EndSample();
 
 			Profiler.EndSample();
 			Profiler.EndSample();
@@ -166,7 +176,10 @@ namespace Zor.UtilityAI.Core
 			Profiler.BeginSample(typeof(TAction).FullName);
 
 			var action = new TAction();
+
+			Profiler.BeginSample("Setup");
 			action.Setup(arg0, arg1, arg2, arg3);
+			Profiler.EndSample();
 
 			Profiler.EndSample();
 			Profiler.EndSample();
@@ -182,7 +195,10 @@ namespace Zor.UtilityAI.Core
 			Profiler.BeginSample(typeof(TAction).FullName);
 
 			var action = new TAction();
+
+			Profiler.BeginSample("Setup");
 			action.Setup(arg0, arg1, arg2, arg3, arg4);
+			Profiler.EndSample();
 
 			Profiler.EndSample();
 			Profiler.EndSample();
@@ -198,7 +214,10 @@ namespace Zor.UtilityAI.Core
 			Profiler.BeginSample(typeof(TAction).FullName);
 
 			var action = new TAction();
+
+			Profiler.BeginSample("Setup");
 			action.Setup(arg0, arg1, arg2, arg3, arg4, arg5);
+			Profiler.EndSample();
 
 			Profiler.EndSample();
 			Profiler.EndSample();
@@ -214,7 +233,10 @@ namespace Zor.UtilityAI.Core
 			Profiler.BeginSample(typeof(TAction).FullName);
 
 			var action = new TAction();
+
+			Profiler.BeginSample("Setup");
 			action.Setup(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+			Profiler.EndSample();
 
 			Profiler.EndSample();
 			Profiler.EndSample();
@@ -230,7 +252,39 @@ namespace Zor.UtilityAI.Core
 			Profiler.BeginSample(typeof(TAction).FullName);
 
 			var action = new TAction();
+
+			Profiler.BeginSample("Setup");
 			action.Setup(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+			Profiler.EndSample();
+
+			Profiler.EndSample();
+			Profiler.EndSample();
+
+			return action;
+		}
+
+		[NotNull]
+		public static Action Create([NotNull] Type type)
+		{
+			Profiler.BeginSample("Action.Create");
+			Profiler.BeginSample(type.FullName);
+
+			var action = (Action)Activator.CreateInstance(type);
+
+			Profiler.EndSample();
+			Profiler.EndSample();
+
+			return action;
+		}
+
+		[NotNull]
+		public static Action Create([NotNull] Type type, [NotNull, ItemCanBeNull] params object[] parameters)
+		{
+			Profiler.BeginSample("Action.Create");
+			Profiler.BeginSample(type.FullName);
+
+			var action = (Action)Activator.CreateInstance(type);
+			SetupableHelper.CreateSetup(action, parameters);
 
 			Profiler.EndSample();
 			Profiler.EndSample();
