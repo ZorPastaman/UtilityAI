@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace Zor.UtilityAI.Components.UtilityAIAgentTickers
 {
+	/// <summary>
+	/// <see cref="UtilityAITicker"/> that calls a tick every Fixed update.
+	/// </summary>
+	/// <seealso cref="UpdateUtilityAITicker"/>
+	/// <seealso cref="LateUpdateUtilityAITicker"/>
 	[AddComponentMenu("Utility AI/Tickers/Fixed Update Utility AI Agent Ticker")]
 	public sealed class FixedUpdateUtilityAITicker : UtilityAITicker
 	{

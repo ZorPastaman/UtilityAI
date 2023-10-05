@@ -7,6 +7,12 @@ using UnityEngine;
 
 namespace Zor.UtilityAI.Components.UtilityAIAgentTickers
 {
+	/// <summary>
+	/// Base class for a <see cref="UtilityAITicker"/> that uses <see cref="Coroutine"/>.
+	/// </summary>
+	/// <remarks>
+	/// This ticks a <see cref="UtilityAIAgent"/> after each <see cref="instruction"/> in the infinite loop.
+	/// </remarks>
 	public abstract class CoroutineUtilityAITicker : UtilityAITicker
 	{
 		/// <summary>

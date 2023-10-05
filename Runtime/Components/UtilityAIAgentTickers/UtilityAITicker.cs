@@ -7,11 +7,17 @@ using Zor.UtilityAI.Debugging;
 
 namespace Zor.UtilityAI.Components.UtilityAIAgentTickers
 {
+	/// <summary>
+	/// Base class for a <see cref="UtilityAIAgent"/> ticker.
+	/// </summary>
 	public abstract class UtilityAITicker : MonoBehaviour
 	{
 		[SerializeField, Tooltip("Ticked utility AI agent.")]
 		private UtilityAIAgent m_UtilityAIAgent;
 
+		/// <summary>
+		/// Ticked <see cref="UtilityAIAgent"/>.
+		/// </summary>
 		[NotNull]
 		public UtilityAIAgent utilityAIAgent
 		{
@@ -21,6 +27,9 @@ namespace Zor.UtilityAI.Components.UtilityAIAgentTickers
 			set => m_UtilityAIAgent = value;
 		}
 
+		/// <summary>
+		/// Ticks <see cref="UtilityAITicker"/>.
+		/// </summary>
 		protected void Tick()
 		{
 			m_UtilityAIAgent.Tick();

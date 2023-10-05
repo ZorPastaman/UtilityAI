@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace Zor.UtilityAI.Components.UtilityAIAgentTickers
 {
+	/// <summary>
+	/// <see cref="CoroutineUtilityAITicker"/> that uses <see langword="null"/>.
+	/// </summary>
+	/// <seealso cref="WaitForSecondsUtilityAITicker"/>
+	/// <seealso cref="WaitForFixedUpdateUtilityAITicker"/>
 	[AddComponentMenu("Utility AI/Tickers/Wait For Null Utility AI Agent Ticker")]
 	public sealed class WaitForNullUtilityAITicker : CoroutineUtilityAITicker
 	{
