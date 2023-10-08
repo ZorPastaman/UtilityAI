@@ -9,6 +9,7 @@ namespace Zor.UtilityAI.DrawingAttributes
 	/// Overrides a default field name in a
 	/// <see cref="Zor.UtilityAI.Serialization.SerializedActions"/> and
 	/// <see cref="Zor.UtilityAI.Serialization.SerializedConsiderations"/>.
+	/// The field must have a <see cref="NameOverridenAttribute"/> with the same index.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 	public sealed class NameOverrideAttribute : Attribute
