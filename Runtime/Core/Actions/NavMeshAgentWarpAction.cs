@@ -6,6 +6,24 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
+	/// <summary>
+	/// <para>
+	/// Makes a <see cref="NavMeshAgent"/> warp to a destination.
+	/// </para>
+	/// <para>
+	/// <list type="number">
+	/// 	<listheader>
+	/// 		<term>Setup arguments:</term>
+	/// 	</listheader>
+	/// 	<item>
+	/// 		<description>Property name of an agent of type <see cref="NavMeshAgent"/>.</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Property name of a destination of type <see cref="Vector3"/>.</description>
+	/// 	</item>
+	/// </list>
+	/// </para>
+	/// </summary>
 	public sealed class NavMeshAgentWarpAction : Action,
 		ISetupable<BlackboardPropertyName, BlackboardPropertyName>,
 		ISetupable<string, string>

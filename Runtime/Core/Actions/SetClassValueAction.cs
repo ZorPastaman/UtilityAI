@@ -5,7 +5,25 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
-	public abstract class SetClassValueAction<T> : Action,
+	/// <summary>
+	/// <para>
+	/// Sets a class value into the <see cref="Blackboard"/>.
+	/// </para>
+	/// <para>
+	/// <list type="number">
+	/// 	<listheader>
+	/// 		<term>Setup arguments:</term>
+	/// 	</listheader>
+	/// 	<item>
+	/// 		<description>Class value of type <typeparamref name="T"/>.</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Target property name.</description>
+	/// 	</item>
+	/// </list>
+	/// </para>
+	/// </summary>
+	public sealed class SetClassValueAction<T> : Action,
 		ISetupable<T, BlackboardPropertyName>,
 		ISetupable<T, string>
 		where T : class

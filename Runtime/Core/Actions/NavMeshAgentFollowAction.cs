@@ -6,6 +6,24 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
+	/// <summary>
+	/// <para>
+	/// Makes a <see cref="NavMeshAgent"/> follow a <see cref="Transform"/>.
+	/// </para>
+	/// <para>
+	/// <list type="number">
+	/// 	<listheader>
+	/// 		<term>Setup arguments:</term>
+	/// 	</listheader>
+	/// 	<item>
+	/// 		<description>Property name of an agent of type <see cref="NavMeshAgent"/>.</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Property name of a followed transform of type <see cref="Transform"/>.</description>
+	/// 	</item>
+	/// </list>
+	/// </para>
+	/// </summary>
 	public sealed class NavMeshAgentFollowAction : Action,
 		ISetupable<BlackboardPropertyName, BlackboardPropertyName>,
 		ISetupable<string, string>

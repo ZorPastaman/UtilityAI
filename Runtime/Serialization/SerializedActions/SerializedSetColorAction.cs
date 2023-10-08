@@ -7,7 +7,7 @@ using Zor.UtilityAI.DrawingAttributes;
 namespace Zor.UtilityAI.Serialization.SerializedActions
 {
 	[NameOverride("Color", 0), NameOverride("Property Name", 1)]
-	public sealed class SerializedSetColorAction : SerializedAction<SetColorAction, Color, string>
+	public sealed class SerializedSetColorAction : SerializedAction<SetStructValueAction<Color>, Color, string>
 	{
 	}
 }

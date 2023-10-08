@@ -8,6 +8,24 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
+	/// <summary>
+	/// <para>
+	/// Makes a <see cref="NavMeshAgent"/> patrol a path.
+	/// </para>
+	/// <para>
+	/// <list type="number">
+	/// 	<listheader>
+	/// 		<term>Setup arguments:</term>
+	/// 	</listheader>
+	/// 	<item>
+	/// 		<description>Property name of an agent of type <see cref="NavMeshAgent"/>.</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Property name of path corners of type <see cref="Vector3"/> array.</description>
+	/// 	</item>
+	/// </list>
+	/// </para>
+	/// </summary>
 	public sealed class NavMeshAgentPatrolAction : Action,
 		ISetupable<BlackboardPropertyName, BlackboardPropertyName>,
 		ISetupable<string, string>
@@ -54,6 +72,7 @@ namespace Zor.UtilityAI.Core.Actions
 				if (!m_agent.pathPending && m_agent.remainingDistance <= m_agent.radius)
 				{
 					m_currentCornerIndex = GetNextCorner();
+					m_agent.SetDestination(m_corners[m_currentCornerIndex]);
 				}
 			}
 		}

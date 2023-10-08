@@ -7,8 +7,20 @@ using UnityEngine.Profiling;
 
 namespace Zor.UtilityAI.Core
 {
-	public static class SetupableHelper
+	/// <summary>
+	/// Collection of methods to help working with setup methods.
+	/// </summary>
+	internal static class SetupableHelper
 	{
+		/// <summary>
+		/// Calls setup method using reflection.
+		/// </summary>
+		/// <param name="obj">Target object.</param>
+		/// <param name="parameters">Setup method arguments. Must be up to 8 elements.</param>
+		/// <exception cref="ArgumentException">
+		/// Thrown when <paramref name="parameters"/> have more than 8 elements
+		/// or no appropriate setup method found on <paramref name="obj"/>.
+		/// </exception>
 		internal static void CreateSetup([NotNull] object obj, [NotNull, ItemCanBeNull] object[] parameters)
 		{
 			Type type = obj.GetType();

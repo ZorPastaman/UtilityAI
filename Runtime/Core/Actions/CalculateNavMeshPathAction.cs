@@ -6,6 +6,35 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Actions
 {
+	/// <summary>
+	/// <para>
+	/// Calculates a <see cref="NavMeshPath"/> and puts it into the <see cref="Blackboard"/>.
+	/// </para>
+	/// <para>
+	/// <list type="number">
+	/// 	<listheader>
+	/// 		<term>Setup arguments:</term>
+	/// 	</listheader>
+	/// 	<item>
+	/// 		<description>Property name of a source of type <see cref="Vector3"/>.</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Property name of a target of type <see cref="Vector3"/>.</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Property name of a filter of type <see cref="NavMeshQueryFilter"/>.</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Property name for a result of type <see cref="NavMeshPath"/>.</description>
+	/// 	</item>
+	/// </list>
+	/// </para>
+	/// </summary>
+	/// <remarks>
+	/// The result is set only if all the required data is available and
+	/// <see cref="NavMesh.CalculatePath(Vector3,Vector3,NavMeshQueryFilter,NavMeshPath)"/> is successful.
+	/// Otherwise the property is removed from the <see cref="Blackboard"/>.
+	/// </remarks>
 	public sealed class CalculateNavMeshPathAction : Action,
 		ISetupable<BlackboardPropertyName, BlackboardPropertyName, BlackboardPropertyName, BlackboardPropertyName>,
 		ISetupable<string, string, string, string>

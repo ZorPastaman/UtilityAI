@@ -10,20 +10,63 @@ using Zor.UtilityAI.Debugging;
 
 namespace Zor.UtilityAI.Core
 {
+	/// <summary>
+	/// Brain of Utility AI.
+	/// </summary>
 	public sealed class Brain : IDisposable
 	{
+		/// <summary>
+		/// Considerations.
+		/// </summary>
 		[NotNull, ItemNotNull] private readonly Consideration[] m_considerations;
+		/// <summary>
+		/// Actions.
+		/// </summary>
 		[NotNull, ItemNotNull] private readonly Action[] m_actions;
+		/// <summary>
+		/// Blackboard.
+		/// </summary>
 		[NotNull] private readonly Blackboard m_blackboard;
 
+		/// <summary>
+		/// Considerations utilities. The arrays are bound by index.
+		/// </summary>
 		[NotNull] private readonly float[] m_utilities;
+		/// <summary>
+		/// Action utilities. The arrays are bound by index.
+		/// </summary>
 		[NotNull] private readonly float[] m_actionUtilities;
+		/// <summary>
+		/// Action to considerations bindings.
+		/// </summary>
 		[NotNull] private readonly int[][] m_actionConsiderationsBindings;
 
+		/// <summary>
+		/// Brain settings.
+		/// </summary>
 		private readonly BrainSettings m_brainSettings;
 
+		/// <summary>
+		/// Current action index.
+		/// </summary>
 		private int m_currentActionIndex;
 
+		/// <summary>
+		/// Creates a <see cref="Brain"/>.
+		/// </summary>
+		/// <param name="considerations">Considerations.</param>
+		/// <param name="actions">Actions.</param>
+		/// <param name="actionConsiderationsBindings">
+		/// Action to considerations bindings.
+		/// First array is bound to actions by index. Second array is bound to considerations by index.
+		/// </param>
+		/// <param name="blackboard">Used <see cref="Blackboard"/>.</param>
+		/// <param name="brainSettings">Brain settings.</param>
+		/// <remarks>
+		/// <para>It may be much easier to create a brain with <see cref="Zor.UtilityAI.Builder.BrainBuilder"/>.</para>
+		/// <para><paramref name="actionConsiderationsBindings"/> lengths must correspond
+		/// to <paramref name="actions"/> and <paramref name="considerations"/> lengths.</para>
+		/// </remarks>
 		public Brain([NotNull, ItemNotNull] Consideration[] considerations, [NotNull, ItemNotNull] Action[] actions,
 			[NotNull] int[][] actionConsiderationsBindings, [NotNull] Blackboard blackboard,
 			BrainSettings brainSettings)
@@ -48,6 +91,9 @@ namespace Zor.UtilityAI.Core
 			}
 		}
 
+		/// <summary>
+		/// <see cref="Blackboard"/> use by brain.
+		/// </summary>
 		[NotNull]
 		public Blackboard blackboard
 		{
@@ -55,6 +101,9 @@ namespace Zor.UtilityAI.Core
 			get => m_blackboard;
 		}
 
+		/// <summary>
+		/// Initializes a brain. It must be called only once and before first <see cref="Tick"/>.
+		/// </summary>
 		public void Initialize()
 		{
 			Profiler.BeginSample("Brain.Initialize");
@@ -69,6 +118,9 @@ namespace Zor.UtilityAI.Core
 			Profiler.EndSample();
 		}
 
+		/// <summary>
+		/// Ticks a brain.
+		/// </summary>
 		public void Tick()
 		{
 			Profiler.BeginSample("Brain.Tick");
@@ -82,6 +134,9 @@ namespace Zor.UtilityAI.Core
 			Profiler.EndSample();
 		}
 
+		/// <summary>
+		/// Disposes a brain.
+		/// </summary>
 		public void Dispose()
 		{
 			Profiler.BeginSample("Brain.Dispose");
@@ -92,6 +147,15 @@ namespace Zor.UtilityAI.Core
 			Profiler.EndSample();
 		}
 
+		/// <summary>
+		/// Fills debug info into <paramref name="brainDebugInfo"/>.
+		/// </summary>
+		/// <param name="brainDebugInfo">Debug info.</param>
+		/// <remarks>
+		/// This method works in any build. It's written quite optimally.
+		/// It's recommended to use the same <paramref name="brainDebugInfo"/> every call.
+		/// This method can modify non-empty <paramref name="brainDebugInfo"/>.
+		/// </remarks>
 		public void FillDebugInfo([NotNull] BrainDebugInfo brainDebugInfo)
 		{
 			brainDebugInfo.brainSettings = m_brainSettings;
@@ -137,6 +201,9 @@ namespace Zor.UtilityAI.Core
 			}
 		}
 
+		/// <summary>
+		/// Initializes considerations.
+		/// </summary>
 		private void InitializeConsiderations()
 		{
 			Profiler.BeginSample("Brain.InitializeConsiderations");
@@ -149,6 +216,9 @@ namespace Zor.UtilityAI.Core
 			Profiler.EndSample();
 		}
 
+		/// <summary>
+		/// Initializes actions.
+		/// </summary>
 		private void InitializeActions()
 		{
 			Profiler.BeginSample("Brain.InitializeActions");
@@ -161,6 +231,11 @@ namespace Zor.UtilityAI.Core
 			Profiler.EndSample();
 		}
 
+		/// <summary>
+		/// Updates utilities of considerations. It calls <see cref="Consideration.ComputeUtility"/> in each element of
+		/// <see cref="m_considerations"/> and puts the results into <see cref="m_utilities"/>.
+		/// They are synced by index.
+		/// </summary>
 		private void UpdateUtilities()
 		{
 			Profiler.BeginSample("Brain.UpdateUtilities");
@@ -179,6 +254,11 @@ namespace Zor.UtilityAI.Core
 			Profiler.EndSample();
 		}
 
+		/// <summary>
+		/// Updates utilities of actions. It multiplies utilities of all considerations of an action and
+		/// puts the result into <see cref="m_actionUtilities"/>. That array and <see cref="m_actions"/>
+		/// are synced by index.
+		/// </summary>
 		private void UpdateActionUtilities()
 		{
 			Profiler.BeginSample("Brain.UpdateActionUtilities");
@@ -191,6 +271,11 @@ namespace Zor.UtilityAI.Core
 			Profiler.EndSample();
 		}
 
+		/// <summary>
+		/// Multiplies
+		/// </summary>
+		/// <param name="actionIndex"></param>
+		/// <returns></returns>
 		private float MultiplyUtilities(int actionIndex)
 		{
 			int[] utilityIndices = m_actionConsiderationsBindings[actionIndex];
@@ -204,6 +289,10 @@ namespace Zor.UtilityAI.Core
 			return utility;
 		}
 
+		/// <summary>
+		/// Finds an action with the highest utility.
+		/// </summary>
+		/// <returns>Index of an action with the highest utility.</returns>
 		private int FindBestActionIndex()
 		{
 			Profiler.BeginSample("Brain.FindBestActionIndex");
@@ -227,6 +316,14 @@ namespace Zor.UtilityAI.Core
 			return bestActionIndex;
 		}
 
+		/// <summary>
+		/// <para>Tries to switch to an action with the index <paramref name="newActionIndex"/>.</para>
+		/// <para>The method checks if that index is different from <see cref="m_currentActionIndex"/>.
+		/// It checks if a utility of a new action is higher than a utility of a current action
+		/// by <see cref="BrainSettings.minimalUtilityDifference"/> at least.</para>
+		/// <para>The method calls <see cref="Action.End"/> and <see cref="Action.Begin"/> if the switch happens.</para>
+		/// </summary>
+		/// <param name="newActionIndex">New action index.</param>
 		private void SwitchAction(int newActionIndex)
 		{
 			Profiler.BeginSample("Brain.TrySwitchAction");
@@ -254,6 +351,9 @@ namespace Zor.UtilityAI.Core
 			Profiler.EndSample();
 		}
 
+		/// <summary>
+		/// Disposes considerations.
+		/// </summary>
 		private void DisposeConsiderations()
 		{
 			Profiler.BeginSample("Brain.DisposeConsiderations");
@@ -266,6 +366,9 @@ namespace Zor.UtilityAI.Core
 			Profiler.EndSample();
 		}
 
+		/// <summary>
+		/// Disposes actions
+		/// </summary>
 		private void DisposeActions()
 		{
 			Profiler.BeginSample("Brain.DisposeActions");

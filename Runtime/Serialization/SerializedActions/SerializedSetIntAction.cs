@@ -6,7 +6,7 @@ using Zor.UtilityAI.DrawingAttributes;
 namespace Zor.UtilityAI.Serialization.SerializedActions
 {
 	[NameOverride("Value", 0), NameOverride("Property Name", 1)]
-	public sealed class SerializedSetIntAction : SerializedAction<SetIntAction, int, string>
+	public sealed class SerializedSetIntAction : SerializedAction<SetStructValueAction<int>, int, string>
 	{
 	}
 }
