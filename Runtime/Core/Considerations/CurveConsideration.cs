@@ -7,6 +7,24 @@ using Zor.SimpleBlackboard.Core;
 
 namespace Zor.UtilityAI.Core.Considerations
 {
+	/// <summary>
+	/// <para>
+	/// <see cref="Consideration"/> using formula y = curveFunc(x).
+	/// </para>
+	/// <para>
+	/// <list type="number">
+	/// 	<listheader>
+	/// 		<term>Setup arguments:</term>
+	/// 	</listheader>
+	/// 	<item>
+	/// 		<description>Curve of type <see cref="AnimationCurve"/>.</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>Property name of x value of type <see cref="float"/>.</description>
+	/// 	</item>
+	/// </list>
+	/// </para>
+	/// </summary>
 	public sealed class CurveConsideration : Consideration,
 		ISetupable<AnimationCurve, BlackboardPropertyName>,
 		ISetupable<AnimationCurve, string>
@@ -24,19 +42,6 @@ namespace Zor.UtilityAI.Core.Considerations
 		{
 			m_curve = curve;
 			m_valuePropertyName = new BlackboardPropertyName(valuePropertyName);
-		}
-
-		[NotNull]
-		public AnimationCurve curve
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]
-			get => m_curve;
-		}
-
-		public BlackboardPropertyName valuePropertyName
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]
-			get => m_valuePropertyName;
 		}
 
 		[Pure]

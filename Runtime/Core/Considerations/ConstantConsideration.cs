@@ -5,6 +5,21 @@ using JetBrains.Annotations;
 
 namespace Zor.UtilityAI.Core.Considerations
 {
+	/// <summary>
+	/// <para>
+	/// <see cref="Consideration"/> using formula y = x.
+	/// </para>
+	/// <para>
+	/// <list type="number">
+	/// 	<listheader>
+	/// 		<term>Setup arguments:</term>
+	/// 	</listheader>
+	/// 	<item>
+	/// 		<description>Returned utility of type <see cref="float"/>.</description>
+	/// 	</item>
+	/// </list>
+	/// </para>
+	/// </summary>
 	public sealed class ConstantConsideration : Consideration, ISetupable<float>
 	{
 		private float m_utility;
@@ -12,12 +27,6 @@ namespace Zor.UtilityAI.Core.Considerations
 		void ISetupable<float>.Setup(float utility)
 		{
 			m_utility = utility;
-		}
-
-		public float utility
-		{
-			[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]
-			get => m_utility;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining), Pure]

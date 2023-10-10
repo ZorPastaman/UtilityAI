@@ -14,6 +14,9 @@ using Zor.UtilityAI.Serialization.SerializedConsiderations;
 
 namespace Zor.UtilityAI.Serialization
 {
+	/// <summary>
+	/// Serialized <see cref="Brain"/>.
+	/// </summary>
 	[CreateAssetMenu(
 		menuName = "Utility AI/Serialized Brain",
 		fileName = "SerializedBrain",
@@ -26,6 +29,10 @@ namespace Zor.UtilityAI.Serialization
 		[SerializeField] private ConsiderationIndices[] m_ConsiderationIndices;
 		[SerializeField] private BrainSettings m_BrainSettings;
 
+		/// <summary>
+		/// Cached <see cref="BrainBuilder"/>.
+		/// Serialized data is deserialized only once on the first call of <see cref="CreateBrain"/> and cached here.
+		/// </summary>
 		private BrainBuilder m_builder;
 
 		public override Brain CreateBrain(Blackboard blackboard)
@@ -42,6 +49,9 @@ namespace Zor.UtilityAI.Serialization
 			return brain;
 		}
 
+		/// <summary>
+		/// Tries to deserialize data. It does nothing if the data has already been deserialized.
+		/// </summary>
 		private void Deserialize()
 		{
 			if (m_builder != null)
@@ -129,12 +139,17 @@ namespace Zor.UtilityAI.Serialization
 			Array.Resize(ref array, array.Length - 1);
 		}
 
-
+		/// <summary>
+		/// Action to considerations binding.
+		/// </summary>
 		[Serializable]
 		private struct ConsiderationIndices
 		{
 			[SerializeField] private int[] m_Considerations;
 
+			/// <summary>
+			/// <see cref="Consideration"/> indices.
+			/// </summary>
 			[NotNull]
 			public int[] considerations
 			{
