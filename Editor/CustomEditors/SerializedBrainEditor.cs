@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using UnityEditor;
@@ -55,7 +56,7 @@ namespace Zor.UtilityAI.CustomEditors
 
 					EditorGUILayout.BeginVertical(GUI.skin.box);
 
-					EditorGUILayout.LabelField(GetNameWithSpaces(objectValue.considerationType.Name), EditorStyles.boldLabel);
+					EditorGUILayout.LabelField(GetUIName(objectValue.considerationType), EditorStyles.boldLabel);
 					objectValue.name = EditorGUILayout.TextField("Name", objectValue.name);
 
 					editor.OnInspectorGUI();
@@ -107,7 +108,7 @@ namespace Zor.UtilityAI.CustomEditors
 
 					EditorGUILayout.BeginVertical(GUI.skin.box);
 
-					EditorGUILayout.LabelField(GetNameWithSpaces(objectValue.actionType.Name), EditorStyles.boldLabel);
+					EditorGUILayout.LabelField(GetUIName(objectValue.actionType), EditorStyles.boldLabel);
 					objectValue.name = EditorGUILayout.TextField("Name", objectValue.name);
 
 					editor.OnInspectorGUI();
@@ -170,12 +171,13 @@ namespace Zor.UtilityAI.CustomEditors
 			for (int i = 0, count = considerationTypes.Count; i < count; ++i)
 			{
 				Type type = considerationTypes[i];
-				genericMenu.AddItem(new GUIContent(type.Name), false, () =>
+				string uiName = GetUIName(type);
+				genericMenu.AddItem(new GUIContent(uiName), false, () =>
 				{
 					Type serializedConsiderationType =
 						SerializedConsiderationTypesCollection.GetSerializedConsiderationType(type);
 					ScriptableObject instance = CreateInstance(serializedConsiderationType);
-					instance.name = type.Name;
+					instance.name = uiName.Replace(" ", string.Empty);
 
 					AssetDatabase.AddObjectToAsset(instance, target);
 
@@ -198,11 +200,12 @@ namespace Zor.UtilityAI.CustomEditors
 			for (int i = 0, count = actionTypes.Count; i < count; ++i)
 			{
 				Type type = actionTypes[i];
-				genericMenu.AddItem(new GUIContent(type.Name), false, () =>
+				string uiName = GetUIName(type);
+				genericMenu.AddItem(new GUIContent(uiName), false, () =>
 				{
 					Type serializedActionType = SerializedActionTypesCollection.GetSerializedActionType(type);
 					ScriptableObject instance = CreateInstance(serializedActionType);
-					instance.name = type.Name;
+					instance.name = uiName.Replace(" ", string.Empty);
 
 					AssetDatabase.AddObjectToAsset(instance, target);
 
@@ -258,7 +261,7 @@ namespace Zor.UtilityAI.CustomEditors
 				var consideration = (SerializedConsideration_Base)considerationsProperty
 					.GetArrayElementAtIndex(considerations.GetArrayElementAtIndex(i).intValue).objectReferenceValue;
 
-				EditorGUILayout.LabelField($"{consideration.name} : {GetNameWithSpaces(consideration.considerationType.Name)}");
+				EditorGUILayout.LabelField($"{consideration.name} : {GetUIName(consideration.considerationType)}");
 
 				if (GUILayout.Button("X", GUILayout.Width(20f)))
 				{
@@ -289,7 +292,7 @@ namespace Zor.UtilityAI.CustomEditors
 						(SerializedConsideration_Base)considerationsProperty.GetArrayElementAtIndex(index)
 							.objectReferenceValue;
 
-					genericMenu.AddItem(new GUIContent($"{consideration.name} : {GetNameWithSpaces(consideration.considerationType.Name)}"), false,
+					genericMenu.AddItem(new GUIContent($"{consideration.name} : {GetUIName(consideration.considerationType)}"), false,
 						() =>
 						{
 							int addIndex = considerations.arraySize++;
@@ -317,8 +320,44 @@ namespace Zor.UtilityAI.CustomEditors
 			return false;
 		}
 
+		/// <summary>
+		/// Transforms a type name. The method inserts spaces between words and adds generic argument types.
+		/// </summary>
+		/// <param name="type">Type.</param>
+		/// <returns>Transformed type name.</returns>
 		[NotNull]
-		public static string GetNameWithSpaces([NotNull] string typeName)
+		public static string GetUIName([NotNull] Type type)
+		{
+			if (!type.IsGenericType)
+			{
+				// "object" name not to confuse it with UnityEngine.Object.
+				return type == typeof(object) ? "object" : GetNameWithSpaces(type.Name);
+			}
+
+			string genericName = type.Name;
+			genericName = genericName[..genericName.IndexOf("`", StringComparison.Ordinal)];
+			var stringBuilder = new StringBuilder(GetNameWithSpaces(genericName));
+			stringBuilder.Append(" <");
+
+			Type[] genericParameters = type.GetGenericArguments();
+
+			for (int i = 0, count = genericParameters.Length; i < count; ++i)
+			{
+				stringBuilder.Append(GetUIName(genericParameters[i]));
+
+				if (i < count - 1)
+				{
+					stringBuilder.Append(", ");
+				}
+			}
+
+			stringBuilder.Append('>');
+
+			return stringBuilder.ToString();
+		}
+
+		[NotNull]
+		private static string GetNameWithSpaces([NotNull] string typeName)
 		{
 			return Regex.Replace(typeName, @"((?<=\p{Ll})\p{Lu})|((?!\A)\p{Lu}(?>\p{Ll}))", " $0");
 		}
