@@ -8,9 +8,14 @@ using UnityEditor;
 using UnityEngine;
 using Zor.UtilityAI.Serialization.SerializedActions;
 using Object = UnityEngine.Object;
+using Action = Zor.UtilityAI.Core.Action;
 
 namespace Zor.UtilityAI.EditorTools
 {
+	/// <summary>
+	/// Collection of all <see cref="SerializedAction_Base"/> types.
+	/// It's automatically filled.
+	/// </summary>
 	[InitializeOnLoad]
 	public static class SerializedActionTypesCollection
 	{
@@ -39,8 +44,16 @@ namespace Zor.UtilityAI.EditorTools
 			}
 		}
 
+		/// <summary>
+		/// <see cref="Action"/> types.
+		/// </summary>
 		public static IReadOnlyList<Type> actionTypes => s_actionTypes;
 
+		/// <summary>
+		/// Finds a paired serialized <see cref="Action"/> type by <see cref="Action"/> type.
+		/// </summary>
+		/// <param name="actionType"><see cref="Action"/> type.</param>
+		/// <returns>Serialized <see cref="Action"/> type or null if not found.</returns>
 		public static Type GetSerializedActionType(Type actionType)
 		{
 			int index = Array.IndexOf(s_actionTypes, actionType);

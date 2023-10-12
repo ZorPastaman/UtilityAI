@@ -6,11 +6,16 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
+using Zor.UtilityAI.Core;
 using Zor.UtilityAI.Serialization.SerializedConsiderations;
 using Object = UnityEngine.Object;
 
 namespace Zor.UtilityAI.EditorTools
 {
+	/// <summary>
+	/// Collection of all <see cref="SerializedConsideration_Base"/> types.
+	/// It's automatically filled.
+	/// </summary>
 	[InitializeOnLoad]
 	public static class SerializedConsiderationTypesCollection
 	{
@@ -39,8 +44,16 @@ namespace Zor.UtilityAI.EditorTools
 			}
 		}
 
+		/// <summary>
+		/// <see cref="Consideration"/> types.
+		/// </summary>
 		public static IReadOnlyList<Type> considerationTypes => s_considerationTypes;
 
+		/// <summary>
+		/// Finds a paired serialized <see cref="Consideration"/> type by <see cref="Consideration"/> type.
+		/// </summary>
+		/// <param name="considerationType"><see cref="Consideration"/> type.</param>
+		/// <returns>Serialized <see cref="Consideration"/> type or null if not found.</returns>
 		public static Type GetSerializedConsiderationType(Type considerationType)
 		{
 			int index = Array.IndexOf(s_considerationTypes, considerationType);
