@@ -121,6 +121,9 @@ namespace Zor.UtilityAI.Core
 		/// <summary>
 		/// Ticks a brain.
 		/// </summary>
+		/// <remarks>
+		/// <see cref="Initialize"/> must be called once before a first tick.
+		/// </remarks>
 		public void Tick()
 		{
 			Profiler.BeginSample("Brain.Tick");

@@ -1,8 +1,8 @@
 {
   "name": "com.zor.utility-ai",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "displayName": "Utility AI",
-  "description": "",
+  "description": "Utility AI for Unity is a good solution for choosing an action based on different utility considerations. Usually, it's used for AI.",
   "unity": "2022.3",
   "keywords": [
     "ai",
